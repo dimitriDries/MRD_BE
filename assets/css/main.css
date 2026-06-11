@@ -1768,7 +1768,7 @@ input, select, textarea {
 	}
 
 	header.major {
-		margin: 0 0 3.5em 0;
+		margin: 0 0 0 0;
 	}
 
 		header.major h2, header.major h3, header.major h4, header.major h5, header.major h6 {
@@ -2321,6 +2321,15 @@ input, select, textarea {
 					}
 
 				}
+/* added Dimi */
+	.icons-container {
+		text-align: center; /* Center the icons horizontally */
+		margin-top: 2em; /* Add spacing above the icons */
+	}
+
+	.icons.major {
+		justify-content: center; /* Ensure icons are centered within the container */
+	}
 
 /* Table */
 
@@ -2781,7 +2790,7 @@ input, select, textarea {
 /* Wrapper */
 
 	.wrapper {
-		padding: 6em 0 4em 0 ;
+		padding: 2em 0 2em 0 ;
 	}
 
 		.wrapper > .inner {
@@ -2813,6 +2822,24 @@ input, select, textarea {
 			background-color: #680000;
 			color: #c8ece9;
 		}
+
+		/* added by Dimi start */
+		.wrapper.style1 .image {
+			align-items: flex-start;
+			height: 100%;	
+		}
+
+		.wrapper.style1.icons{
+			text-align: center;
+			margin-top: 0em;
+		}
+
+		.wrapper.style1 .mrdicon {
+			width: 5em;
+			height: auto;
+			margin: 0em 2em 0 2em;
+		}
+		/* added by Dimi end */
 
 			.wrapper.style1 strong, .wrapper.style1 b {
 				color: #f2f4f3ff;
@@ -2965,7 +2992,6 @@ input, select, textarea {
 				.wrapper.style1 .features li {
 					border-top-color: rgba(0, 0, 0, 0.125);
 				}
-
 			}
 
 		.wrapper.style2 {
@@ -3439,7 +3465,7 @@ input, select, textarea {
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease;
 		background: #2e3842;
-		height: 3em;
+		height: 3.5em;
 		left: 0;
 		line-height: 3em;
 		position: fixed;
@@ -3462,7 +3488,7 @@ input, select, textarea {
 
 			#header h1 a {
 				border: 0;
-				display: block;
+				display: flex;
 				height: inherit;
 				line-height: inherit;
 			}
@@ -3517,7 +3543,7 @@ input, select, textarea {
 								content: '';
 								display: inline-block;
 								height: 3.75em;
-								vertical-align: top;
+								vertical-align: middle;
 								width: 2em;
 							}
 
@@ -4024,3 +4050,20 @@ input, select, textarea {
 		left: 0;
 		z-index: -1;
 	  }
+
+	.image-header-container {
+		display: flex;
+		align-items: center;
+		gap: 2em; /* Adjust spacing between the image and header */
+	}
+
+	.image-header-container .image {
+		flex-shrink: 0; /* Prevent the image from shrinking */
+		width: 40%; /* Set a fixed width for the image */
+		height: auto; /* Maintain aspect ratio */
+		vertical-align: middle; /* Align the image vertically */
+	}
+
+	.image-header-container .major {
+		flex-grow: 1; /* Allow the header to take up remaining space */
+	}
