@@ -1,0 +1,93 @@
+---
+import { about, site } from "../data/site";
+---
+
+<section class="section about" id="about" aria-labelledby="about-title">
+  <div class="container about__grid">
+    <div class="about__text">
+      <p class="eyebrow" data-reveal>{about.eyebrow}</p>
+      <h2 id="about-title" data-reveal style="--reveal-delay: 0.06s">{about.title}</h2>
+      {about.paragraphs.map((p, i) => (
+        <p class="about__para" data-reveal style={`--reveal-delay: ${0.12 + i * 0.06}s`}>{p}</p>
+      ))}
+      <a
+        class="link about__link"
+        href={site.linkedin}
+        rel="noopener"
+        target="_blank"
+        data-reveal
+        style="--reveal-delay: 0.3s"
+      >
+        Connect on LinkedIn →
+      </a>
+    </div>
+
+    <figure class="about__portrait" data-reveal style="--reveal-delay: 0.15s">
+      <span class="about__slash" aria-hidden="true"></span>
+      <img
+        src={about.portrait}
+        alt={`Portrait of ${site.owner.name}`}
+        width="380"
+        height="420"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .about__para {
+    color: var(--muted);
+    margin-top: 1.15rem;
+    max-width: 36rem;
+  }
+
+  .about__link {
+    display: inline-block;
+    margin-top: 1.75rem;
+  }
+
+  .about__portrait {
+    position: relative;
+    margin: 0;
+    justify-self: center;
+  }
+
+  .about__portrait img {
+    position: relative;
+    z-index: 1;
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  /* the brand slash behind the portrait */
+  .about__slash {
+    position: absolute;
+    inset: -8% auto -8% 58%;
+    width: 22%;
+    background: var(--red);
+    transform: skewX(calc(-1 * var(--slash-angle)));
+  }
+
+  @media (max-width: 820px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__portrait {
+      order: -1;
+      max-width: 280px;
+    }
+  }
+</style>

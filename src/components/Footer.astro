@@ -1,0 +1,120 @@
+---
+import { site, nav } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="/images/mrd_thumbnail.png" alt="" width="44" height="44" loading="lazy" />
+      <p class="footer__name">Monsieur<strong>Data</strong></p>
+      <p class="footer__tag">{site.owner.role}, {site.owner.location}</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <p class="footer__heading">Site</p>
+      <ul>
+        {nav.links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__contact">
+      <p class="footer__heading">Get in touch</p>
+      <ul>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__legal">
+    <p>&copy; {year} {site.name} &middot; {site.owner.name}</p>
+    <!-- TODO(Dimitri): add VAT/BTW number, e.g. <p>BTW BE 0XXX.XXX.XXX</p> -->
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--paper-inv);
+    padding-block: 4rem 2rem;
+    /* the slash, as a top border */
+    border-top: 4px solid var(--red);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .footer__name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-top: 0.9rem;
+  }
+
+  .footer__name strong { color: var(--red); }
+
+  .footer__tag {
+    color: var(--muted-inv);
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+
+  .footer__heading {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted-inv);
+    margin-bottom: 1rem;
+  }
+
+  .footer__heading::before {
+    content: "/ ";
+    color: var(--red);
+  }
+
+  .footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .footer a {
+    color: var(--paper-inv);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .footer a:hover {
+    opacity: 1;
+    color: #fff;
+  }
+
+  .footer__legal {
+    border-top: 1px solid color-mix(in srgb, var(--paper-inv) 14%, transparent);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--muted-inv);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 700px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+# MonsieurData
+
+> MonsieurData is the digital analytics practice of Dimitri Dries, a digital
+> analytics developer based in Belgium. He builds measurement setups that
+> teams can trust: Google Analytics 4 (GA4) and Google Tag Manager (GTM)
+> implementations, server-side tagging, Consent Mode v2, BigQuery data
+> pipelines and reporting dashboards.
+
+## What is a digital analytics developer?
+
+A digital analytics developer is the hands-on, technical counterpart to an
+analytics consultant: someone who implements tracking plans, dataLayers,
+GA4/GTM containers, server-side tagging and the data pipelines behind them,
+rather than only advising on strategy.
+
+## Services
+
+- **Analytics Audit**: structured review of GA4/GTM tracking, data quality,
+  consent and reporting, ending in a prioritised roadmap. (~2 weeks)
+- **Implementation Sprint**: hands-on delivery of tracking plans, GA4/GTM
+  (web and server-side), BigQuery pipelines and dashboards. (4-8 weeks)
+- **Data Partner** (highest value): ongoing retainer where Dimitri works
+  embedded in the client's team and tools for a fixed number of days per
+  month, covering monitoring, analysis and new tracking needs.
+
+## Expertise
+
+Google Analytics 4, Google Tag Manager, server-side tagging, tracking plans
+and dataLayer design, Consent Mode v2 and CMP integration, GDPR-compliant
+measurement, BigQuery, SQL, dbt, Python, Looker Studio, Power BI, AppsFlyer,
+marketing data models.
+
+## Location and working model
+
+Based in Belgium. Remote-first, with on-site days across Belgium and the EU.
+
+## Contact
+
+- Email: dimitri@monsieurdata.be
+- LinkedIn: https://www.linkedin.com/in/dimitridries/
+- Website: https://www.monsieurdata.be

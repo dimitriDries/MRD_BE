@@ -1,0 +1,65 @@
+---
+import { skills } from "../data/site";
+---
+
+<section class="section section--dark" id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>{skills.eyebrow}</p>
+      <h2 id="skills-title" data-reveal style="--reveal-delay: 0.06s">{skills.title}</h2>
+      <p class="lede" data-reveal style="--reveal-delay: 0.12s">{skills.lede}</p>
+    </div>
+
+    <div class="skills">
+      {skills.groups.map((group, i) => (
+        <div class="skills__group" data-reveal style={`--reveal-delay: ${i * 0.1}s`}>
+          <h3>{group.title}</h3>
+          <ul>
+            {group.items.map((item) => (
+              <li class="skills__chip">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .skills__group h3 {
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--paper-inv) 15%, transparent);
+  }
+
+  .skills__group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .skills__chip {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--paper-inv);
+    background: var(--ink-soft);
+    border: 1px solid color-mix(in srgb, var(--paper-inv) 12%, transparent);
+    padding: 0.42rem 0.85rem;
+    transition: border-color 0.25s, transform 0.25s var(--ease-out);
+  }
+
+  .skills__chip:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+</style>

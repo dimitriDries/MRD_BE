@@ -1,0 +1,69 @@
+---
+import { contact, site } from "../data/site";
+---
+
+<section class="section section--dark cta" id="contact" aria-labelledby="contact-title">
+  <span class="cta__slash" aria-hidden="true"></span>
+  <div class="container cta__inner">
+    <p class="eyebrow" data-reveal>{contact.eyebrow}</p>
+    <h2 id="contact-title" data-reveal style="--reveal-delay: 0.06s">{contact.title}</h2>
+    <p class="lede" data-reveal style="--reveal-delay: 0.12s">{contact.lede}</p>
+
+    <div class="cta__actions" data-reveal style="--reveal-delay: 0.2s">
+      <a href={site.bookingUrl} class="btn btn--primary" rel="noopener">
+        {contact.primaryCta.label}
+      </a>
+      <p class="cta__alt">
+        {contact.altLabel}
+        <a class="link" href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+  }
+
+  .cta .lede {
+    margin-inline: auto;
+  }
+
+  .cta__actions {
+    margin-top: 2.5rem;
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+  }
+
+  .cta__alt {
+    color: var(--muted-inv);
+    font-size: 0.95rem;
+  }
+
+  .cta__alt .link {
+    color: var(--paper-inv);
+    border-bottom-color: var(--red);
+    margin-left: 0.35rem;
+  }
+
+  .cta__slash {
+    position: absolute;
+    top: -30%;
+    bottom: -30%;
+    left: 8%;
+    width: clamp(30px, 4vw, 60px);
+    background: var(--red);
+    opacity: 0.35;
+    transform: skewX(calc(-1 * var(--slash-angle)));
+  }
+</style>

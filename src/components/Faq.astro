@@ -1,0 +1,119 @@
+---
+import { faq } from "../data/site";
+
+// FAQPage structured data: AI assistants and search engines extract and
+// cite these Q&As directly (GEO), so keep answers in sync with the visible text.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<section class="section faq" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>{faq.eyebrow}</p>
+      <h2 id="faq-title" data-reveal style="--reveal-delay: 0.06s">{faq.title}</h2>
+    </div>
+
+    <div class="faq__list">
+      {faq.items.map((item, i) => (
+        <details class="faq__item" data-reveal style={`--reveal-delay: ${i * 0.06}s`}>
+          <summary>
+            <h3>{item.q}</h3>
+            <span class="faq__marker" aria-hidden="true"></span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</section>
+
+<style>
+  .faq__list {
+    max-width: 46rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .faq__item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0 1.5rem;
+    transition: border-color 0.25s;
+  }
+
+  .faq__item[open],
+  .faq__item:hover {
+    border-color: color-mix(in srgb, var(--red) 35%, var(--line));
+  }
+
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 1.15rem 0;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  /* plus marker that becomes the brand slash when open */
+  .faq__marker {
+    position: relative;
+    flex: 0 0 18px;
+    height: 18px;
+  }
+
+  .faq__marker::before,
+  .faq__marker::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background: var(--red);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .faq__marker::before {
+    width: 2.5px;
+    height: 18px;
+  }
+
+  .faq__marker::after {
+    width: 18px;
+    height: 2.5px;
+  }
+
+  .faq__item[open] .faq__marker::before {
+    transform: skewX(calc(-1 * var(--slash-angle)));
+  }
+
+  .faq__item[open] .faq__marker::after {
+    transform: rotate(90deg) skewX(calc(-1 * var(--slash-angle))) scaleX(0);
+  }
+
+  .faq__item p {
+    color: var(--muted);
+    padding-bottom: 1.4rem;
+    max-width: 40rem;
+  }
+</style>

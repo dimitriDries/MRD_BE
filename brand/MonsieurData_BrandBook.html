@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MonsieurData Brand Book v1.0</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #9E2114;
+    --red-deep: #7C1A10;
+    --red-tint: #F6E9E7;
+    --ink: #16120F;
+    --ink-soft: #2B2521;
+    --paper: #FAF8F4;
+    --surface: #FFFFFF;
+    --line: #E7E1D7;
+    --muted: #6E675F;
+    --paper-inv: #F4F0E9;
+    --muted-inv: #A59C91;
+    --display: "Space Grotesk", sans-serif;
+    --body: "Inter", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: var(--body); background: var(--paper); color: var(--ink); line-height: 1.65; }
+  .wrap { max-width: 960px; margin-inline: auto; padding: 0 2rem; }
+  h1, h2, h3 { font-family: var(--display); letter-spacing: -0.015em; line-height: 1.1; }
+  section { padding: 4.5rem 0; border-bottom: 1px solid var(--line); }
+  .label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; }
+  .label::before { content: "/ "; color: var(--red); font-weight: 700; }
+  h2 { font-size: 2rem; margin-bottom: 1.25rem; }
+  p.intro { color: var(--muted); max-width: 38rem; }
+
+  /* Cover */
+  .cover { background: var(--ink); color: var(--paper-inv); padding: 7rem 0; border-bottom: 4px solid var(--red); position: relative; overflow: hidden; }
+  .cover::after { content: ""; position: absolute; top: -20%; bottom: -20%; right: 8%; width: 90px; background: var(--red); transform: skewX(-16deg); }
+  .cover h1 { font-size: clamp(2.5rem, 6vw, 4rem); position: relative; z-index: 1; }
+  .cover .label { color: var(--muted-inv); }
+  .cover p { color: var(--muted-inv); margin-top: 1rem; max-width: 34rem; position: relative; z-index: 1; }
+
+  /* Swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .swatch { border: 1px solid var(--line); background: var(--surface); }
+  .swatch__color { height: 110px; }
+  .swatch__meta { padding: 0.9rem 1rem; font-size: 0.85rem; }
+  .swatch__meta strong { display: block; font-family: var(--display); }
+  .swatch__meta code { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+  /* Type specimens */
+  .specimen { background: var(--surface); border: 1px solid var(--line); padding: 2rem; margin-top: 1.5rem; }
+  .specimen + .specimen { margin-top: 1rem; }
+  .specimen .which { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+  .specimen .display { font-family: var(--display); font-size: 2.6rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.1; }
+  .specimen .bodytext { max-width: 40rem; }
+  .specimen .monotext { font-family: var(--mono); font-size: 0.95rem; }
+
+  /* Logo */
+  .logos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .logobox { border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 3rem; }
+  .logobox--light { background: var(--surface); }
+  .logobox--dark { background: var(--ink); }
+  .logobox img { max-height: 140px; width: auto; }
+
+  /* Rules table */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .rule { padding: 1.5rem; border: 1px solid var(--line); background: var(--surface); font-size: 0.95rem; }
+  .rule strong { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+  .rule--do strong { color: #2c6e49; }
+  .rule--dont strong { color: var(--red); }
+  .rule ul { padding-left: 1.1rem; margin-top: 0.25rem; }
+  .rule li { margin-bottom: 0.45rem; }
+
+  /* Slash demo */
+  .slashdemo { display: flex; gap: 2.5rem; align-items: center; margin-top: 2rem; flex-wrap: wrap; }
+  .slashdemo .slash { width: 26px; height: 110px; background: var(--red); transform: skewX(-16deg); }
+  .btn-demo { font-family: var(--display); font-weight: 600; background: var(--red); color: #fff; padding: 0.9rem 1.75rem; display: inline-block; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
+
+  table { border-collapse: collapse; width: 100%; margin-top: 1.5rem; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border: 1px solid var(--line); }
+  th { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--surface); }
+  td code { font-family: var(--mono); font-size: 0.82rem; }
+
+  .voice { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  footer { padding: 3rem 0; color: var(--muted); font-size: 0.85rem; }
+  @media (max-width: 700px) { .logos, .rules, .voice { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="wrap">
+    <p class="label">Brand book · v1.0 · June 2026</p>
+    <h1>Monsieur<span style="color:#c84b3a">Data</span></h1>
+    <p>Identity guidelines for MonsieurData, the digital analytics practice of Dimitri Dries, digital analytics developer. Use this document as the single source of truth for every future design: web, decks, documents, social.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="label">01 · Brand idea</p>
+    <h2>The gentleman &amp; the slash.</h2>
+    <p class="intro">The brand pairs two ideas: the <strong>monsieur</strong> (classic, trustworthy, precise, a touch of wit) and the <strong>slash</strong> (sharp, modern, decisive). Everything designed for MonsieurData should balance those two: calm, craftsmanlike surfaces cut by one confident accent. Professional first, edge second, never gimmicky.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">02 · Logo</p>
+    <h2>Logo usage.</h2>
+    <p class="intro">The primary mark is the gentleman silhouette crossed by the red slash. The thumbnail (cropped) version is for favicons, avatars and small spaces.</p>
+    <div class="logos">
+      <div class="logobox logobox--light"><img src="../images/MonsieurData_logo.png" alt="Primary logo on light" /></div>
+      <div class="logobox logobox--dark"><img src="../images/MonsieurData_logo.png" alt="Primary logo on dark" /></div>
+      <div class="logobox logobox--light"><img src="../images/mrd_thumbnail.png" alt="Thumbnail mark on light" style="max-height:90px" /></div>
+      <div class="logobox logobox--dark"><img src="../images/mrd_thumbnail.png" alt="Thumbnail mark on dark" style="max-height:90px" /></div>
+    </div>
+    <div class="rules">
+      <div class="rule rule--do"><strong>Do</strong>
+        <ul>
+          <li>Give the logo clear space equal to the height of the slash on all sides.</li>
+          <li>Use the thumbnail mark below 48px.</li>
+          <li>Place on Paper (#FAF8F4), white, or Ink (#16120F) backgrounds only.</li>
+        </ul>
+      </div>
+      <div class="rule rule--dont"><strong>Don't</strong>
+        <ul>
+          <li>Recolour the slash or the silhouette.</li>
+          <li>Rotate, outline, shadow or distort the mark.</li>
+          <li>Place the logo on busy photos or mid-tone backgrounds.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">03 · Color</p>
+    <h2>Palette.</h2>
+    <p class="intro">One accent, used sparingly. Signal Red is for the slash, CTAs and key emphasis: if everything is red, nothing is. Warm neutrals do the heavy lifting.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch__color" style="background:#9E2114"></div><div class="swatch__meta"><strong>Signal Red</strong><code>#9E2114 · accent, CTAs, slash</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#7C1A10"></div><div class="swatch__meta"><strong>Deep Red</strong><code>#7C1A10 · hover / pressed</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#16120F"></div><div class="swatch__meta"><strong>Ink</strong><code>#16120F · text, dark sections</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#2B2521"></div><div class="swatch__meta"><strong>Soft Ink</strong><code>#2B2521 · cards on dark</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#FAF8F4; border-bottom:1px solid #E7E1D7"></div><div class="swatch__meta"><strong>Paper</strong><code>#FAF8F4 · page background</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#FFFFFF; border-bottom:1px solid #E7E1D7"></div><div class="swatch__meta"><strong>Surface</strong><code>#FFFFFF · cards, raised UI</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#E7E1D7"></div><div class="swatch__meta"><strong>Line</strong><code>#E7E1D7 · borders, hairlines</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#6E675F"></div><div class="swatch__meta"><strong>Muted</strong><code>#6E675F · secondary text</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#F6E9E7"></div><div class="swatch__meta"><strong>Red Tint</strong><code>#F6E9E7 · subtle highlights</code></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#F4F0E9"></div><div class="swatch__meta"><strong>Paper Invert</strong><code>#F4F0E9 · text on dark</code></div></div>
+    </div>
+    <table>
+      <tr><th>Rule</th><th>Guideline</th></tr>
+      <tr><td>Accent budget</td><td>Red should cover ≤ 10% of any layout. One slash, one CTA.</td></tr>
+      <tr><td>Contrast</td><td>Body text is always Ink on Paper/Surface, or Paper Invert on Ink (WCAG AA+).</td></tr>
+      <tr><td>Red + text</td><td>White text on Signal Red only at ≥ 16px semibold. Never long paragraphs on red.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">04 · Typography</p>
+    <h2>Type system.</h2>
+    <div class="specimen">
+      <p class="which">Display · Space Grotesk (600/700) · headlines, buttons, card titles</p>
+      <p class="display">Turn messy data into decisions.</p>
+    </div>
+    <div class="specimen">
+      <p class="which">Body · Inter (400/500/600) · paragraphs, UI, navigation</p>
+      <p class="bodytext">Inter handles everything long-form: readable at small sizes, neutral enough to let the headlines do the talking. Body size 17px, line-height 1.65.</p>
+    </div>
+    <div class="specimen">
+      <p class="which">Mono · IBM Plex Mono (500) · labels, numbers, data, eyebrows</p>
+      <p class="monotext">/ TRUSTED BY · 8+ YEARS · €1.250 / DAY</p>
+    </div>
+    <table>
+      <tr><th>Role</th><th>Font</th><th>Size (web)</th><th>Notes</th></tr>
+      <tr><td>H1</td><td>Space Grotesk 600</td><td>clamp(2.5–4.25rem)</td><td>letter-spacing −0.015em</td></tr>
+      <tr><td>H2</td><td>Space Grotesk 600</td><td>clamp(1.9–2.75rem)</td><td>sentence case, ends with a period</td></tr>
+      <tr><td>Body</td><td>Inter 400</td><td>1.0625rem</td><td>max line length ~38rem</td></tr>
+      <tr><td>Eyebrow</td><td>IBM Plex Mono 500</td><td>0.8125rem</td><td>UPPERCASE, 0.14em tracking, red "/" prefix</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">05 · The slash motif</p>
+    <h2>One angle, everywhere.</h2>
+    <p class="intro">The slash from the logo is the brand's signature graphic element. It always leans at <strong>16° from vertical</strong> (CSS: <code style="font-family:var(--mono)">skewX(-16deg)</code>). It appears as section accents, list markers, the "/" in labels, and the clipped corner of primary buttons.</p>
+    <div class="slashdemo">
+      <div class="slash"></div>
+      <span class="btn-demo">Book a free intro call</span>
+      <span style="font-family:var(--mono); font-size:0.85rem; color:var(--muted)">/ EYEBROW LABEL</span>
+    </div>
+    <div class="rules">
+      <div class="rule rule--do"><strong>Do</strong>
+        <ul>
+          <li>Use at most one large slash per screen/page.</li>
+          <li>Keep the 16° angle exactly: consistency is the brand.</li>
+          <li>Use reduced opacity (25–45%) for layered/background slashes.</li>
+        </ul>
+      </div>
+      <div class="rule rule--dont"><strong>Don't</strong>
+        <ul>
+          <li>Mirror the slash (it always leans right-to-left, top-right high).</li>
+          <li>Use other diagonal angles or zig-zags.</li>
+          <li>Combine with gradients, glows or 3D effects.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">06 · Voice &amp; tone</p>
+    <h2>Sound like the monsieur.</h2>
+    <p class="intro">Confident, plain-spoken, lightly witty. Write like a senior developer who has nothing to prove: short sentences, concrete claims, no buzzwords, no exclamation marks. Dry humour is welcome in small doses (one wink per page, maximum).</p>
+    <div class="voice">
+      <div class="rule rule--do"><strong>Say</strong>
+        <ul>
+          <li>"Reporting people actually use."</li>
+          <li>"Clear scope, no lock-in."</li>
+          <li>"If nobody opens it, it doesn't exist."</li>
+        </ul>
+      </div>
+      <div class="rule rule--dont"><strong>Avoid</strong>
+        <ul>
+          <li>"Unlock the power of data-driven synergies!"</li>
+          <li>"World-class, cutting-edge solutions."</li>
+          <li>Anything you wouldn't say out loud to a client.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">07 · Web tokens</p>
+    <h2>Design tokens (CSS).</h2>
+    <p class="intro">The website implements all of the above as CSS custom properties in <code style="font-family:var(--mono)">src/styles/global.css</code>. Reuse these values for any new digital design.</p>
+    <table>
+      <tr><th>Token</th><th>Value</th></tr>
+      <tr><td><code>--red</code></td><td><code>#9E2114</code></td></tr>
+      <tr><td><code>--ink</code></td><td><code>#16120F</code></td></tr>
+      <tr><td><code>--paper</code></td><td><code>#FAF8F4</code></td></tr>
+      <tr><td><code>--slash-angle</code></td><td><code>16deg</code></td></tr>
+      <tr><td><code>--container</code></td><td><code>1140px</code></td></tr>
+      <tr><td><code>--section-pad</code></td><td><code>clamp(4.5rem, 10vw, 8rem)</code></td></tr>
+      <tr><td><code>--radius</code></td><td><code>4px</code></td></tr>
+      <tr><td>Motion</td><td><code>cubic-bezier(0.22, 1, 0.36, 1)</code>, 0.25–0.7s, always honour <code>prefers-reduced-motion</code></td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>MonsieurData Brand Book v1.0, June 2026. Open this file in any browser. Fonts load from Google Fonts; offline, system fallbacks apply.</p>
+  </div>
+</footer>
+
+</body>
+</html>
