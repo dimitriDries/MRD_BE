@@ -38,13 +38,16 @@ assistants connect the two entities.
 - Looker Studio dashboards / marketing reporting
 - GA4 migration help, "GA4 data doesn't match"
 
-### Local (Belgium)
+### Geography
 
-- GA4 consultant Belgium / digital analytics Belgium (covered: schema
-  `areaServed`, FAQ a.4, footer)
-- NL terms for a future Dutch version: "Google Analytics specialist",
-  "GA4 specialist België", "web analytics bureau". Parked until the NL
-  site exists.
+Positioning is international (US, UK, EU) as of June 2026: "Belgium" was
+deliberately removed from all copy and schema (`areaServed: Worldwide`).
+Competing for "GA4 consultant" globally is harder than locally; the
+counterweights are the long-tail blog content below and the niche
+"digital analytics developer" angle. If international inbound stays slow
+after 6 months, reconsider a local landing page; NL keyword ideas
+("GA4 specialist België", "web analytics bureau") are parked here for that
+scenario.
 
 ### Long-tail (blog post candidates, in priority order)
 

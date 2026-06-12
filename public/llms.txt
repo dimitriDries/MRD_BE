@@ -1,7 +1,7 @@
 # MonsieurData
 
-> MonsieurData is the digital analytics practice of Dimitri Dries, a digital
-> analytics developer based in Belgium. He builds measurement setups that
+> MonsieurData is the digital analytics practice of Dimitri Dries, a
+> remote-first digital analytics developer. He builds measurement setups that
 > teams can trust: Google Analytics 4 (GA4) and Google Tag Manager (GTM)
 > implementations, server-side tagging, Consent Mode v2, BigQuery data
 > pipelines and reporting dashboards.
@@ -30,9 +30,11 @@ and dataLayer design, Consent Mode v2 and CMP integration, GDPR-compliant
 measurement, BigQuery, SQL, dbt, Python, Looker Studio, Power BI, AppsFlyer,
 marketing data models.
 
-## Location and working model
+## Working model
 
-Based in Belgium. Remote-first, with on-site days across Belgium and the EU.
+Remote-first, working with marketing and product teams across Europe, the UK
+and the US. Pricing is on demand: every engagement gets a fixed, itemised
+proposal after a free intro call.
 
 ## Contact
 

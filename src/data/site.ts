@@ -11,12 +11,11 @@
 
 export const site = {
   name: "MonsieurData",
-  // TODO(Dimitri): confirm final domain (also in astro.config.mjs)
-  url: "https://www.monsieurdata.be",
+  url: "https://monsieurdata.be",
   // SEO: leads with the highest-intent search terms (see docs/SEO-KEYWORDS.md)
   title: "Digital Analytics Developer | GA4, GTM & BigQuery | MonsieurData",
   description:
-    "GA4 & Google Tag Manager setups, server-side tagging, Consent Mode v2, BigQuery pipelines and dashboards your team will use. Digital analytics developer based in Belgium.",
+    "GA4 & Google Tag Manager setups, server-side tagging, Consent Mode v2, BigQuery pipelines and dashboards your team will use. Remote-first digital analytics developer.",
   locale: "en",
   email: "dimitri@monsieurdata.be",
   linkedin: "https://www.linkedin.com/in/dimitridries/",
@@ -25,8 +24,7 @@ export const site = {
   owner: {
     name: "Dimitri Dries",
     role: "Digital Analytics Developer",
-    // TODO(Dimitri): confirm city for local SEO (schema.org address region)
-    location: "Belgium",
+    location: "remote-first, worldwide",
   },
 };
 
@@ -42,7 +40,7 @@ export const nav = {
 };
 
 export const hero = {
-  eyebrow: "Digital analytics developer, Belgium",
+  eyebrow: "Digital analytics developer",
   // The hook. Short, declarative, problem-first.
   // TODO(Dimitri): approve or sharpen. This sets the tone for everything.
   headline: ["You're sitting on data.", "Start acting on it."],
@@ -90,14 +88,14 @@ export const valueProp = {
 export const packages = {
   eyebrow: "Services",
   title: "Three ways to work together.",
-  lede: "Clear scope, no lock-in. Start small, scale when it proves its worth.",
+  lede: "Clear scope, no lock-in. Start small, scale when it proves its worth. Every engagement is scoped and priced to your situation: you'll get a clear proposal after the intro call.",
   note: "Not sure which fits? That's exactly what the intro call is for.",
   tiers: [
     {
       name: "Analytics Audit",
       tagline: "Know where you stand",
-      // TODO(Dimitri): confirm pricing & duration for all three tiers.
-      price: "from €X.XXX",
+      // TODO(Dimitri): confirm durations for all three tiers.
+      // Pricing is deliberately NOT shown on the site (on-demand, per client).
       duration: "± 2 weeks",
       description:
         "A structured review of your current setup, covering tracking, data quality, consent and reporting. You get a prioritised roadmap you can execute with or without me.",
@@ -114,7 +112,6 @@ export const packages = {
     {
       name: "Implementation Sprint",
       tagline: "Get it built, properly",
-      price: "from €X.XXX",
       duration: "4–8 weeks",
       description:
         "Hands-on delivery of your measurement foundation: tracking plan, GA4 / GTM implementation, BigQuery pipelines and the dashboards on top. Documented and handed over.",
@@ -131,7 +128,6 @@ export const packages = {
     {
       name: "Data Partner",
       tagline: "Embedded in your team",
-      price: "from €X.XXX / month",
       duration: "ongoing, flexible days",
       description:
         "I join your company as your embedded data person for a fixed number of days per month: in your tools, in your meetings, on a first-name basis with your data. Monitoring, analysis, new tracking needs and a sparring partner for every data question.",
@@ -243,7 +239,7 @@ export const about = {
   title: "The monsieur behind the data.",
   // TODO(Dimitri): personalise this bio (drafted as a starting point).
   paragraphs: [
-    "I'm Dimitri Dries, a digital analytics developer based in Belgium. After years inside agencies and in-house teams, I started MonsieurData with a simple belief: most companies don't need more data, they need data they can trust.",
+    "I'm Dimitri Dries, a digital analytics developer. After years inside agencies and in-house teams, I started MonsieurData with a simple belief: most companies don't need more data, they need data they can trust.",
     "I work hands-on across the full chain: from the dataLayer in your codebase to the pipeline in BigQuery to the dashboard your CMO opens on Monday morning. One person, end to end, no handovers lost in translation.",
   ],
   portrait: "/images/DimitriDries_ZW_NoBG.png",
@@ -268,8 +264,12 @@ export const faq = {
       a: "Yes. Privacy-proof measurement is part of every setup: Consent Mode v2, CMP integration and server-side tagging, so you stay compliant and still get numbers you can work with.",
     },
     {
-      q: "Where are you based and how do you work?",
-      a: "I'm based in Belgium and work remote-first, with on-site days possible across Belgium and the EU. For ongoing work I embed directly in your team and tools.",
+      q: "Do you work with international clients?",
+      a: "Yes. I work remote-first with marketing and product teams across Europe, the UK and the US. Documented setups and async updates keep collaboration smooth across time zones, with calls where it matters. For ongoing work I embed directly in your team and tools.",
+    },
+    {
+      q: "How much does it cost?",
+      a: "Pricing is tailored to scope: a focused audit is priced very differently from an ongoing embedded role. After the free intro call you get a fixed, itemised proposal, so there are never surprises on the invoice.",
     },
     {
       q: "How do we get started?",

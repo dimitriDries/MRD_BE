@@ -10,8 +10,6 @@ all of it (each item is also marked `TODO(Dimitri)` in the code).
 - [ ] **Hero stats** - all four numbers (8+ years / 15+ clients helped /
       30+ setups / 100%) are invented. Replace with your real numbers
       (`hero.stats`).
-- [ ] **Package pricing** - all three tiers say "from €X.XXX". Set real
-      "from" prices (or remove the price lines) in `packages.tiers`.
 - [ ] **Testimonials** - all three quotes are `[PLACEHOLDER]`. Get 2–3 real
       quotes (with permission) and replace `testimonials.items`.
 - [ ] **Client logos** - drop logo files in `public/images/clients/` and update

@@ -2,8 +2,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
-// TODO(Dimitri): confirm the final production domain.
-const SITE_URL = "https://www.monsieurdata.be";
+const SITE_URL = "https://monsieurdata.be";
 
 export default defineConfig({
   site: SITE_URL,

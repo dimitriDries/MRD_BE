@@ -20,10 +20,7 @@ import { packages, site } from "../data/site";
           {tier.featured && <p class="tier__badge">{tier.badge}</p>}
           <h3>{tier.name}</h3>
           <p class="tier__tagline">{tier.tagline}</p>
-          <p class="tier__price">
-            {tier.price}
-            <span class="tier__duration">{tier.duration}</span>
-          </p>
+          <p class="tier__duration">{tier.duration}</p>
           <p class="tier__desc">{tier.description}</p>
           <ul class="tier__list">
             {tier.includes.map((item) => (
@@ -99,20 +96,12 @@ import { packages, site } from "../data/site";
     margin-top: 0.25rem;
   }
 
-  .tier__price {
-    font-family: var(--font-mono);
-    font-size: 1.15rem;
-    font-weight: 500;
-    margin-top: 1.4rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-  }
-
   .tier__duration {
+    font-family: var(--font-mono);
     font-size: 0.82rem;
+    letter-spacing: 0.04em;
     color: var(--muted);
-    font-family: var(--font-body);
+    margin-top: 1.4rem;
   }
 
   .tier__desc {

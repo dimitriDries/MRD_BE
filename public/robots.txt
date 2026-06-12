@@ -4,4 +4,4 @@ Disallow: /blog
 
 # Blog is pre-launch; remove the Disallow line above when it goes live.
 
-Sitemap: https://www.monsieurdata.be/sitemap-index.xml
+Sitemap: https://monsieurdata.be/sitemap-index.xml
