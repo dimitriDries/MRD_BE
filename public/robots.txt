@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /blog
+
+# Blog is pre-launch; remove the Disallow line above when it goes live.
+
+Sitemap: https://monsieurdata.be/sitemap-index.xml

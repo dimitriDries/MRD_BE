@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+
+<Base title={`Page not found | ${site.name}`} noindex={true}>
+  <section class="section nf">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>This page got lost in the dataLayer.</h1>
+      <p class="lede">The page you're looking for doesn't exist (or moved without a redirect, tut tut).</p>
+      <a href="/" class="btn btn--primary nf__btn">Back to the homepage</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .nf__btn {
+    margin-top: 2rem;
+  }
+</style>

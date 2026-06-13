@@ -1,0 +1,174 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/ibm-plex-mono/500.css";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Set on pages that should stay out of search engines (e.g. blog pre-launch). */
+  noindex?: boolean;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// Social share image (1200x630 recommended).
+const ogImage = new URL("/images/mrd_thumbnail.png", Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      email: site.email,
+      description: site.description,
+      logo: new URL("/images/MonsieurData_logo.png", Astro.site).toString(),
+      areaServed: "Worldwide",
+      founder: { "@id": `${site.url}/#person` },
+      sameAs: [site.linkedin],
+    },
+    {
+      "@type": "Person",
+      "@id": `${site.url}/#person`,
+      name: site.owner.name,
+      jobTitle: site.owner.role,
+      worksFor: { "@id": `${site.url}/#organization` },
+      url: site.url,
+      sameAs: [site.linkedin],
+      knowsAbout: [
+        "Google Analytics 4",
+        "Amplitude",
+        "Mixpanel",
+        "Google Tag Manager",
+        "Server-side tagging",
+        "Consent Mode v2",
+        "Mobile app tracking",
+        "Firebase",
+        "AppsFlyer",
+        "Mobile measurement partners (MMP)",
+        "BigQuery",
+        "Dataform",
+        "Digital analytics",
+        "Data engineering",
+        "Looker Studio",
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Tag Manager -->
+    <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${site.gtmId}');`} />
+    <!-- End Google Tag Manager -->
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/png" href="/images/mrd_thumbnail.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Scroll reveal: elements with [data-reveal] rise in once, when 15% visible.
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (!reduced && "IntersectionObserver" in window) {
+        const revealer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => revealer.observe(el));
+      } else {
+        document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
+      }
+
+      // Count-up stats: [data-countup] with data-value / data-suffix.
+      const counters = document.querySelectorAll<HTMLElement>("[data-countup]");
+      if (counters.length) {
+        const animate = (el: HTMLElement) => {
+          const target = Number(el.dataset.value ?? 0);
+          const suffix = el.dataset.suffix ?? "";
+          if (reduced) {
+            el.textContent = target + suffix;
+            return;
+          }
+          const duration = 1400;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        };
+        const counterObs = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                animate(entry.target as HTMLElement);
+                counterObs.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.6 }
+        );
+        counters.forEach((el) => counterObs.observe(el));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+---
+import { clients } from "../data/site";
+// Track is duplicated for a seamless CSS marquee loop.
+const loop = [...clients.logos, ...clients.logos];
+---
+
+<section class="section clients" aria-labelledby="clients-title">
+  <div class="container">
+    <div class="clients__head" data-reveal>
+      <p class="eyebrow">{clients.eyebrow}</p>
+      <h2 id="clients-title" class="clients__title">{clients.title}</h2>
+    </div>
+  </div>
+
+  <div class="marquee" data-reveal style="--reveal-delay: 0.1s">
+    <div class="marquee__track">
+      {loop.map((client) => (
+        <div class="clients__item">
+          {client.logo ? (
+            <img src={client.logo} alt={client.name} height="36" loading="lazy" />
+          ) : (
+            <span class="clients__placeholder">{client.name}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clients {
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+    border-block: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .clients__head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .clients__title {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  }
+
+  .clients__item {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: filter 0.25s, opacity 0.25s;
+  }
+
+  /* Normalise every logo to the same visual height, width auto. Overrides
+     the global `img { height: auto }` so logos with different aspect ratios
+     line up. object-fit keeps any whitespace from stretching. */
+  .clients__item img {
+    height: 34px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+
+  .clients__item:hover {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Placeholder wordmark until real logos land in /public/images/clients/ */
+  .clients__placeholder {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    white-space: nowrap;
+    border: 1px dashed var(--line);
+    padding: 0.4rem 1.1rem;
+  }
+</style>

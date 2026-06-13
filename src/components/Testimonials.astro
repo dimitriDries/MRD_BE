@@ -1,0 +1,200 @@
+---
+import { testimonials } from "../data/site";
+---
+
+<section class="section" id="testimonials" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-reveal>{testimonials.eyebrow}</p>
+      <h2 id="testimonials-title" data-reveal style="--reveal-delay: 0.06s">{testimonials.title}</h2>
+    </div>
+
+    <div class="t-slider" data-reveal style="--reveal-delay: 0.12s">
+      <div class="t-slider__viewport">
+        <div class="t-slider__track">
+          {testimonials.items.map((t, i) => (
+            <blockquote class="t-card" data-slide={i}>
+              <span class="t-card__mark" aria-hidden="true">“</span>
+              <div class="t-card__quote">
+                {t.quote.map((para) => (
+                  <p set:html={para} />
+                ))}
+              </div>
+              <footer class="t-card__author">
+                <strong>{t.author}</strong>
+                <span>{t.role}, {t.company}</span>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+
+      <div class="t-slider__controls">
+        <button class="t-slider__btn" data-dir="-1" aria-label="Previous testimonial">←</button>
+        <div class="t-slider__dots" role="tablist" aria-label="Testimonials">
+          {testimonials.items.map((_, i) => (
+            <button
+              class:list={["t-slider__dot", { "is-active": i === 0 }]}
+              data-dot={i}
+              aria-label={`Testimonial ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button class="t-slider__btn" data-dir="1" aria-label="Next testimonial">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .t-slider {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+  .t-slider__viewport {
+    overflow: hidden;
+  }
+
+  .t-slider__track {
+    display: flex;
+    transition: transform 0.55s var(--ease-out);
+  }
+
+  .t-card {
+    flex: 0 0 100%;
+    margin: 0;
+    padding: 0 clamp(0.25rem, 4vw, 2.5rem);
+    text-align: center;
+  }
+
+  .t-card__mark {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 0.6;
+    color: var(--red);
+    margin-bottom: 0.6rem;
+  }
+
+  .t-card__quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: var(--muted);
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .t-card__quote p + p {
+    margin-top: 1rem;
+  }
+
+  .t-card__quote :global(strong) {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .t-card__author {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .t-card__author span {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .t-slider__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .t-slider__btn {
+    background: none;
+    border: 1px solid var(--line);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+
+  .t-slider__btn:hover {
+    border-color: var(--red);
+    background: var(--red);
+    color: #fff;
+  }
+
+  .t-slider__dots {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .t-slider__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    background: var(--line);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .t-slider__dot.is-active {
+    background: var(--red);
+    transform: scale(1.25);
+  }
+</style>
+
+<script>
+  const slider = document.querySelector<HTMLElement>(".t-slider");
+  if (slider) {
+    const track = slider.querySelector<HTMLElement>(".t-slider__track")!;
+    const slides = slider.querySelectorAll(".t-card").length;
+    const dots = slider.querySelectorAll<HTMLButtonElement>("[data-dot]");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+    let timer: number | undefined;
+
+    const go = (to: number) => {
+      index = (to + slides) % slides;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+    };
+
+    slider.querySelectorAll<HTMLButtonElement>("[data-dir]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        go(index + Number(btn.dataset.dir));
+        restart();
+      })
+    );
+    dots.forEach((dot) =>
+      dot.addEventListener("click", () => {
+        go(Number(dot.dataset.dot));
+        restart();
+      })
+    );
+
+    // Auto-advance every 6s, paused on hover/focus, skipped for reduced motion.
+    const restart = () => {
+      if (reduced) return;
+      window.clearInterval(timer);
+      timer = window.setInterval(() => go(index + 1), 6000);
+    };
+    slider.addEventListener("mouseenter", () => window.clearInterval(timer));
+    slider.addEventListener("mouseleave", restart);
+    slider.addEventListener("focusin", () => window.clearInterval(timer));
+    slider.addEventListener("focusout", restart);
+    restart();
+  }
+</script>
