@@ -2,33 +2,47 @@
 
 > MonsieurData is the digital analytics practice of Dimitri Dries, a
 > remote-first digital analytics developer. He builds measurement setups that
-> teams can trust: Google Analytics 4 (GA4) and Google Tag Manager (GTM)
-> implementations, server-side tagging, Consent Mode v2, BigQuery data
-> pipelines and reporting dashboards.
+> teams can trust: analytics and tag management implementations (Google
+> Analytics 4, Amplitude, Mixpanel, Google Tag Manager) across web and mobile
+> apps, server-side tagging, Consent Mode v2, and BigQuery data pipelines. He
+> is vendor-agnostic: the platform is chosen to fit the client, not the other
+> way around.
 
 ## What is a digital analytics developer?
 
 A digital analytics developer is the hands-on, technical counterpart to an
 analytics consultant: someone who implements tracking plans, dataLayers,
-GA4/GTM containers, server-side tagging and the data pipelines behind them,
+analytics and tag management containers (GA4, Amplitude, Mixpanel, GTM),
+mobile app tracking, server-side tagging and the data pipelines behind them,
 rather than only advising on strategy.
 
 ## Services
 
-- **Analytics Audit**: structured review of GA4/GTM tracking, data quality,
-  consent and reporting, ending in a prioritised roadmap. (~2 weeks)
-- **Implementation Sprint**: hands-on delivery of tracking plans, GA4/GTM
-  (web and server-side), BigQuery pipelines and dashboards. (4-8 weeks)
+- **Analytics Audit**: structured review of your analytics platform and tag
+  management setup, data quality, consent and reporting, ending in a
+  prioritised roadmap. (~2 weeks)
+- **Implementation Sprint**: hands-on delivery of a tracking plan, analytics
+  and tag management implementation (GA4, Amplitude, Mixpanel, GTM, web and
+  server-side), mobile app tracking (Firebase, AppsFlyer & MMPs) and BigQuery
+  pipelines, documented and handed over. (4-8 weeks)
 - **Data Partner** (highest value): ongoing retainer where Dimitri works
   embedded in the client's team and tools for a fixed number of days per
-  month, covering monitoring, analysis and new tracking needs.
+  month, covering monitoring, data quality alerts and new tracking needs.
 
 ## Expertise
 
-Google Analytics 4, Google Tag Manager, server-side tagging, tracking plans
-and dataLayer design, Consent Mode v2 and CMP integration, GDPR-compliant
-measurement, BigQuery, SQL, dbt, Python, Looker Studio, Power BI, AppsFlyer,
-marketing data models.
+Tracking plans and dataLayer design, analytics platforms (Google Analytics 4,
+Amplitude, Mixpanel), Google Tag Manager and server-side tagging, Consent
+Mode v2 and CMP integration, GDPR-compliant measurement, mobile app tracking
+(Firebase, AppsFlyer, mobile measurement partners), marketing pixels and
+attribution, BigQuery, SQL, dbt / Dataform, Python, Looker Studio, Power BI,
+marketing and app data models.
+
+## How AI is used
+
+Dimitri uses AI tools to speed up documentation, scaffolding and the
+repetitive parts of a build. Architecture decisions, QA and judgment calls
+stay with him: the work is AI-assisted, not AI-generated.
 
 ## Working model
 
@@ -40,4 +54,4 @@ proposal after a free intro call.
 
 - Email: dimitri@monsieurdata.be
 - LinkedIn: https://www.linkedin.com/in/dimitridries/
-- Website: https://www.monsieurdata.be
+- Website: https://monsieurdata.be

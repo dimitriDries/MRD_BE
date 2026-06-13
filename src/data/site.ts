@@ -15,12 +15,11 @@ export const site = {
   // SEO: leads with the highest-intent search terms (see docs/SEO-KEYWORDS.md)
   title: "Digital Analytics Developer | GA4, GTM & BigQuery | MonsieurData",
   description:
-    "GA4 & Google Tag Manager setups, server-side tagging, Consent Mode v2, BigQuery pipelines and dashboards your team will use. Remote-first digital analytics developer.",
+    "GA4, GTM, server-side tagging and Consent Mode v2 for web and mobile apps, with BigQuery pipelines built to last. Remote-first digital analytics developer.",
   locale: "en",
   email: "dimitri@monsieurdata.be",
   linkedin: "https://www.linkedin.com/in/dimitridries/",
-  // TODO(Dimitri): create a booking page (Calendly / Cal.com / SavvyCal) and paste the URL here.
-  bookingUrl: "#book-a-call-TODO",
+  bookingUrl: "https://cal.com/athena-mrd-ms0iie/30min",
   owner: {
     name: "Dimitri Dries",
     role: "Digital Analytics Developer",
@@ -39,43 +38,45 @@ export const nav = {
   cta: { label: "Book an intro call", href: "#contact" },
 };
 
+// Computed at build time so the "years active" stat never goes stale.
+const FOUNDING_YEAR = 2018;
+const yearsActive = new Date().getFullYear() - FOUNDING_YEAR;
+
 export const hero = {
   eyebrow: "Digital analytics developer",
-  // The hook. Short, declarative, problem-first.
-  // TODO(Dimitri): approve or sharpen. This sets the tone for everything.
-  headline: ["You're sitting on data.", "Start acting on it."],
-  sub: "I help marketing and product teams fix their tracking, centralise their data and ship reporting people actually use. From GA4 to BigQuery to the boardroom.",
+  // The hook. Short, declarative, durability + trust.
+  headline: ["Tracking built to last.", "Numbers you can trust."],
+  sub: "I help marketing and product teams fix broken tracking and build data foundations, across web and app, that last. Clean, documented and ready for whatever your BI team builds next.",
   primaryCta: { label: "Book a free intro call", href: "#contact" },
   secondaryCta: { label: "See how I work", href: "#services" },
   // Proof bar under the hero. Numbers count up on scroll.
-  // TODO(Dimitri): replace with your REAL numbers (these are placeholders).
   stats: [
-    { value: 8, suffix: "+", label: "years in digital analytics" },
-    { value: 15, suffix: "+", label: "clients helped" },
-    { value: 30, suffix: "+", label: "tracking setups delivered" },
-    { value: 100, suffix: "%", label: "independent & hands-on" },
+    { value: yearsActive, suffix: "+", label: "years in digital analytics" },
+    { value: 8, suffix: "", label: "clients helped" },
+    { value: 30, suffix: "+", label: "websites tracked" },
+    { value: 4, suffix: "+", label: "mobile apps tracked" },
   ],
 };
 
 export const valueProp = {
   eyebrow: "Why MonsieurData",
   title: "Data you can defend, decisions you can trust.",
-  lede: "Most analytics setups are either broken, bloated, or both. I keep it simple: measure what matters, store it properly, and report it in a way your team actually uses.",
+  lede: "Most analytics setups are either broken, bloated, or both. I keep it simple: measure what matters, store it properly, and hand it off clean, documented and ready for your team to build on.",
   pillars: [
     {
       icon: "tagmanagement",
       title: "Tracking done right",
-      body: "Tracking plans, GA4 and Google Tag Manager setups (web & server-side) that are documented, privacy-proof and built to survive your next site release.",
+      body: "Tracking plans and measurement setups across web, server-side and mobile apps: GA4, Amplitude, Mixpanel, Google Tag Manager, Firebase, AppsFlyer & MMPs, whichever fits your stack. Documented, privacy-proof and built to survive your next release.",
     },
     {
       icon: "development",
       title: "Data where it belongs",
-      body: "Pipelines into BigQuery that centralise your marketing and product data: clean, deduplicated and modelled for analysis, not just storage.",
+      body: "Pipelines into BigQuery that centralise your web, app, marketing and product data: clean, deduplicated, documented and modelled so your BI team can build on it without cleanup.",
     },
     {
       icon: "reporting",
-      title: "Reporting that gets used",
-      body: "Dashboards built around the decisions your team makes, not vanity metrics. If nobody opens it, it doesn't exist.",
+      title: "Documented and handed over",
+      body: "Every setup comes with a tracking plan, dataLayer documentation and a handover your team (or the next developer) can actually follow. No tribal knowledge, no black box.",
     },
     {
       icon: "privacy",
@@ -94,13 +95,12 @@ export const packages = {
     {
       name: "Analytics Audit",
       tagline: "Know where you stand",
-      // TODO(Dimitri): confirm durations for all three tiers.
       // Pricing is deliberately NOT shown on the site (on-demand, per client).
       duration: "± 2 weeks",
       description:
         "A structured review of your current setup, covering tracking, data quality, consent and reporting. You get a prioritised roadmap you can execute with or without me.",
       includes: [
-        "GA4, GTM & data layer review",
+        "Analytics platform, tag management & data layer review",
         "Data quality & consent check",
         "Reporting & KPI assessment",
         "Prioritised, actionable roadmap",
@@ -114,12 +114,12 @@ export const packages = {
       tagline: "Get it built, properly",
       duration: "4–8 weeks",
       description:
-        "Hands-on delivery of your measurement foundation: tracking plan, GA4 / GTM implementation, BigQuery pipelines and the dashboards on top. Documented and handed over.",
+        "Hands-on delivery of your measurement foundation across web and app: tracking plan, analytics and tag management implementation (GA4, Amplitude, Mixpanel, GTM, server-side or whatever fits your stack) and BigQuery pipelines. Documented and handed over, ready for whatever your BI tools build on top.",
       includes: [
         "Tracking plan & dataLayer spec",
-        "GA4 + GTM build (web & server-side)",
+        "Analytics & tag management build (web & server-side)",
+        "Mobile app tracking (Firebase, AppsFlyer & MMPs)",
         "BigQuery pipelines & data models",
-        "Dashboards your team will use",
         "Documentation & handover session",
       ],
       cta: "Plan a sprint",
@@ -130,12 +130,12 @@ export const packages = {
       tagline: "Embedded in your team",
       duration: "ongoing, flexible days",
       description:
-        "I join your company as your embedded data person for a fixed number of days per month: in your tools, in your meetings, on a first-name basis with your data. Monitoring, analysis, new tracking needs and a sparring partner for every data question.",
+        "I join your company as your embedded data person for a fixed number of days per month: in your tools, in your meetings, on a first-name basis with your data. Monitoring, new tracking needs and a sparring partner for every data question.",
       includes: [
         "Embedded in your team & tools",
         "Fixed days per month, flexible scope",
         "Monitoring & data quality alerts",
-        "Ad-hoc analysis & deep dives",
+        "New tracking needs, scoped and shipped fast",
         "Direct line, no agency overhead",
       ],
       cta: "Discuss a retainer",
@@ -166,17 +166,16 @@ export const skills = {
   eyebrow: "Toolbox",
   title: "Skills & tools.",
   lede: "Specialised where it counts, fluent across the rest of the stack.",
-  // TODO(Dimitri): confirm/trim this list - drafted from your known stack.
   groups: [
     {
       title: "Measurement & tracking",
       items: [
-        "Google Analytics 4",
-        "Google Tag Manager",
-        "Server-side tagging",
         "Tracking plans & dataLayer design",
+        "GA4, Amplitude & Mixpanel",
+        "Google Tag Manager & server-side tagging",
+        "Mobile app tracking (Firebase, AppsFlyer & MMPs)",
         "Consent Mode v2 / CMPs",
-        "AppsFlyer",
+        "Marketing pixels & attribution",
       ],
     },
     {
@@ -184,7 +183,7 @@ export const skills = {
       items: [
         "BigQuery",
         "SQL",
-        "dbt",
+        "dbt / Dataform",
         "Python",
         "Google Apps Script",
         "API integrations",
@@ -196,9 +195,9 @@ export const skills = {
         "Looker Studio",
         "Power BI",
         "KPI frameworks",
-        "Marketing data models",
-        "Automated alerting",
-        "Stakeholder dashboards",
+        "Marketing & app data models",
+        "Automated data quality alerting",
+        "BI-ready data handoff",
       ],
     },
   ],
@@ -237,10 +236,10 @@ export const testimonials = {
 export const about = {
   eyebrow: "About",
   title: "The monsieur behind the data.",
-  // TODO(Dimitri): personalise this bio (drafted as a starting point).
   paragraphs: [
-    "I'm Dimitri Dries, a digital analytics developer. After years inside agencies and in-house teams, I started MonsieurData with a simple belief: most companies don't need more data, they need data they can trust.",
-    "I work hands-on across the full chain: from the dataLayer in your codebase to the pipeline in BigQuery to the dashboard your CMO opens on Monday morning. One person, end to end, no handovers lost in translation.",
+    "I'm Dimitri Dries, an independent analytics developer working at the intersection of business, technology and marketing. I design and build the data collection infrastructure that makes reliable, data-driven decisions possible: tracking architecture, dataLayer design, tag management (web and server-side), marketing pixels, attribution, and getting the right data into your analytics tools, ad platforms and data warehouse. I'm platform-agnostic: GA4, Amplitude, Mixpanel or whatever your team already runs, the architecture comes first and the platform fits around it.",
+    "Before founding MonsieurData in 2024, I spent five years embedded at D'Ieteren, leading the analytics transformation of a multi-brand automotive group from fragmented, low-maturity tracking to a cross-brand foundation used by every team. Since then I've rebuilt analytics foundations from scratch for fast-scaling e-commerce brands, fintech platforms and enterprise organisations, including mobile measurement ecosystems built across web and app.",
+    "I don't build on top of your stack. I build at its core, so it lasts and scales as your company grows. I work end-to-end and self-sufficiently. You don't need to project-manage me.",
   ],
   portrait: "/images/DimitriDries_ZW_NoBG.png",
 };
@@ -253,11 +252,19 @@ export const faq = {
   items: [
     {
       q: "What does a digital analytics developer do?",
-      a: "A digital analytics developer builds and maintains the technical side of measurement: Google Analytics 4 and Google Tag Manager implementations, dataLayer and tracking plans, server-side tagging, BigQuery data pipelines and reporting dashboards. Think of it as the hands-on counterpart to an analytics consultant: less slideware, more working setups.",
+      a: "A digital analytics developer builds and maintains the technical side of measurement: tracking plans and dataLayer design, analytics and tag management implementations (GA4, Amplitude, Mixpanel, Google Tag Manager, server-side tagging), mobile app tracking and BigQuery data pipelines. Think of it as the hands-on counterpart to an analytics consultant: less slideware, more working setups, handed off clean and documented for your BI team to build on.",
     },
     {
       q: "Do you only work with Google Analytics 4?",
-      a: "GA4 and Google Tag Manager are the core of most projects, but the work spans the full stack: server-side GTM, BigQuery, dbt, Looker Studio, Power BI and mobile measurement with AppsFlyer. The right tool depends on your stack, not mine.",
+      a: "No. GA4 is one of several platforms I work with, alongside Amplitude, Mixpanel and others, and for plenty of the teams I work with it isn't the right fit. Part of an audit is picking the platform that matches your product, team and budget, not defaulting to whatever's free. Google Tag Manager, server-side tagging, BigQuery, dbt/Dataform, Looker Studio, Power BI and mobile measurement (Firebase, AppsFlyer, other MMPs) round out the stack regardless of which analytics platform you land on.",
+    },
+    {
+      q: "Do you handle mobile app tracking?",
+      a: "Yes, mobile measurement is one of my focus areas: Firebase/GA4 for apps, AppsFlyer and other MMPs, wired into the same data foundation as your web tracking so app and web data tell one consistent story instead of living in separate silos.",
+    },
+    {
+      q: "Will you build us a dashboard?",
+      a: "Not as part of the standard scope. My work ends when clean, structured, documented data lands in your warehouse or analytics platform, ready for your BI team or tooling to build on. That handoff is deliberate: it's where my expertise stops and your team's (or your BI partner's) begins.",
     },
     {
       q: "Can you make our tracking GDPR-compliant?",
@@ -270,6 +277,10 @@ export const faq = {
     {
       q: "How much does it cost?",
       a: "Pricing is tailored to scope: a focused audit is priced very differently from an ongoing embedded role. After the free intro call you get a fixed, itemised proposal, so there are never surprises on the invoice.",
+    },
+    {
+      q: "Do you use AI in your work?",
+      a: "Yes, as a tool, not a replacement. AI helps me draft documentation, scaffold code and speed up the repetitive parts of a build, but the architecture decisions, the QA and the judgment calls stay with me. You're hiring an experienced analytics developer who works faster and more precisely because of AI, not an AI-generated setup with my name attached.",
     },
     {
       q: "How do we get started?",

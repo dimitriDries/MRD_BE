@@ -17,6 +17,17 @@ llms.txt and structured data. The FAQ explicitly defines "digital analytics
 developer" and links it to "analytics consultant", so search engines and AI
 assistants connect the two entities.
 
+## GA4 in SEO vs. in content (June 2026 note)
+
+"GA4 consultant" / "GA4 setup" remain high-intent search terms and stay in
+the title tag and meta description on that basis. Body content (hero,
+pillars, packages, skills, FAQ, llms.txt) deliberately does NOT center GA4:
+Dimitri is vendor-agnostic and often recommends Amplitude or Mixpanel over
+GA4 depending on the client. GA4 now appears in skills/FAQ alongside
+Amplitude and Mixpanel, not as the default. Add "Amplitude implementation" /
+"Mixpanel implementation" / "product analytics consultant" as secondary
+keyword candidates once there's traffic data to validate demand.
+
 ## Keyword map
 
 ### Primary (commercial intent, the money terms)
@@ -29,13 +40,15 @@ assistants connect the two entities.
 | server-side tagging / server-side GTM | meta description, skills, FAQ, llms.txt |
 | GA4 audit / analytics audit | Packages tier 1, llms.txt |
 | GA4 BigQuery export / pipelines | pillars, packages, skills |
+| Mobile app tracking / AppsFlyer / Firebase setup | hero stats, pillars, packages, skills, FAQ, llms.txt |
 
 ### Secondary (problem-aware searches)
 
 - Consent Mode v2 implementation (huge GDPR-driven demand; FAQ a.3)
 - GDPR-compliant tracking / cookieless measurement
 - tracking plan / dataLayer specification
-- Looker Studio dashboards / marketing reporting
+- mobile measurement partner (MMP) setup, app vs. web tracking discrepancies
+- Looker Studio / Power BI reporting on marketing & app data
 - GA4 migration help, "GA4 data doesn't match"
 
 ### Geography
@@ -57,6 +70,8 @@ scenario.
 3. "GA4 audit checklist"
 4. "Tracking plan template"
 5. "Why your GA4 numbers don't match your CRM"
+6. "Firebase vs AppsFlyer: which mobile measurement partner do you need"
+7. "Why your app and web data don't match in GA4"
 
 ## GEO (generative engine optimization) - what's implemented
 
@@ -75,6 +90,10 @@ self-contained answers and consistent entity data:
 - **Freshness**: AI engines favour recently updated content. The blog is the
   freshness engine: publishing the long-tail posts above is the single
   biggest GEO lever left.
+- **"Do you use AI?" FAQ entry**: pre-empts a question buyers increasingly ask
+  AI assistants about freelancers/agencies directly. Answered honestly
+  (AI-assisted, not AI-generated) so assistants surface an accurate,
+  on-brand answer instead of guessing or staying silent.
 
 ## Still to do (needs you)
 
