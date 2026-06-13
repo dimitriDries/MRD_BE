@@ -2,24 +2,26 @@
  * ============================================================
  *  MonsieurData - central site content
  *  ------------------------------------------------------------
- *  ALL editable copy lives in this file. Anything marked
- *  `TODO(Dimitri)` needs your real input - drafted placeholders
- *  are clearly flagged so nothing fake ships unnoticed.
- *  See CONTENT-TODO.md for the full checklist.
+ *  All editable site copy lives in this file. Edit the string
+ *  values; the components read from these exports.
  * ============================================================
  */
 
 export const site = {
   name: "MonsieurData",
   url: "https://monsieurdata.be",
-  // SEO: leads with the highest-intent search terms (see docs/SEO-KEYWORDS.md)
   title: "Digital Analytics Developer | GA4, GTM & BigQuery | MonsieurData",
   description:
     "GA4, GTM, server-side tagging and Consent Mode v2 for web and mobile apps, with BigQuery pipelines built to last. Remote-first digital analytics developer.",
   locale: "en",
-  email: "dimitri@monsieurdata.be",
+  // Google Tag Manager container. Loaded site-wide via the Base layout.
+  gtmId: "GTM-PLDJDXDD",
+  email: "info@monsieurdata.be",
   linkedin: "https://www.linkedin.com/in/dimitridries/",
+  // 30-min intro call. Also used by the Audit & Sprint package buttons.
   bookingUrl: "https://cal.com/athena-mrd-ms0iie/30min",
+  // 45-min call for the embedded Data Partner conversation.
+  bookingUrlPartner: "https://cal.com/athena-mrd-ms0iie/monsieurdata-45-min-meeting",
   owner: {
     name: "Dimitri Dries",
     role: "Digital Analytics Developer",
@@ -71,7 +73,7 @@ export const valueProp = {
     {
       icon: "development",
       title: "Data where it belongs",
-      body: "Pipelines into BigQuery that centralise your web, app, marketing and product data: clean, deduplicated, documented and modelled so your BI team can build on it without cleanup.",
+      body: "Pipelines into a data warehouse that centralise your web, app, marketing and product data: clean, deduplicated, documented and modelled so your BI team can build on it without cleanup.",
     },
     {
       icon: "reporting",
@@ -91,22 +93,25 @@ export const packages = {
   title: "Three ways to work together.",
   lede: "Clear scope, no lock-in. Start small, scale when it proves its worth. Every engagement is scoped and priced to your situation: you'll get a clear proposal after the intro call.",
   note: "Not sure which fits? That's exactly what the intro call is for.",
+  // `bookingKey` selects which cal.com link a tier's button opens:
+  //   "intro"   → site.bookingUrl (30-min call)
+  //   "partner" → site.bookingUrlPartner (45-min call)
   tiers: [
     {
       name: "Analytics Audit",
       tagline: "Know where you stand",
-      // Pricing is deliberately NOT shown on the site (on-demand, per client).
       duration: "± 2 weeks",
       description:
-        "A structured review of your current setup, covering tracking, data quality, consent and reporting. You get a prioritised roadmap you can execute with or without me.",
+        "A structured review of your current setup, covering tracking, data quality, consent and reporting. You get a prioritised roadmap you can execute with or without me, including a recommendation on whether your current toolstack is the right fit.",
       includes: [
         "Analytics platform, tag management & data layer review",
         "Data quality & consent check",
-        "Reporting & KPI assessment",
+        "Toolstack fit & migration advice",
         "Prioritised, actionable roadmap",
         "Walkthrough call with your team",
       ],
-      cta: "Start with an audit",
+      cta: "Schedule your audit",
+      bookingKey: "intro",
       featured: false,
     },
     {
@@ -123,6 +128,7 @@ export const packages = {
         "Documentation & handover session",
       ],
       cta: "Plan a sprint",
+      bookingKey: "intro",
       featured: false,
     },
     {
@@ -133,12 +139,13 @@ export const packages = {
         "I join your company as your embedded data person for a fixed number of days per month: in your tools, in your meetings, on a first-name basis with your data. Monitoring, new tracking needs and a sparring partner for every data question.",
       includes: [
         "Embedded in your team & tools",
-        "Fixed days per month, flexible scope",
-        "Monitoring & data quality alerts",
-        "New tracking needs, scoped and shipped fast",
-        "Direct line, no agency overhead",
+        "Flexible scope",
+        "New tracking needs; scoped and shipped fast",
+        "Direct line; no agency overhead",
+        "No project management needed; I project manage myself"
       ],
-      cta: "Discuss a retainer",
+      cta: "Let's talk",
+      bookingKey: "partner",
       featured: true,
       badge: "Highest value",
     },
@@ -148,24 +155,24 @@ export const packages = {
 export const clients = {
   eyebrow: "Trusted by",
   title: "Brands I've worked with.",
-  // TODO(Dimitri): drop client logo files in /public/images/clients/
-  // (SVG preferred, or PNG ±240px wide, monochrome looks best)
-  // and replace these entries: { name: "...", logo: "/images/clients/x.svg" }.
   // `logo: null` renders a styled wordmark placeholder instead.
   logos: [
-    { name: "Client One", logo: null },
-    { name: "Client Two", logo: null },
-    { name: "Client Three", logo: null },
-    { name: "Client Four", logo: null },
-    { name: "Client Five", logo: null },
-    { name: "Client Six", logo: null },
+    { name: "Loop Earplugs", logo: "/images/clients/LoopEarplugs.png" },
+    { name: "D'ieteren", logo: "/images/clients/Dieteren.png" },
+    { name: "Carmoola", logo: "/images/clients/Carmoola.png" },
+    { name: "Acerta", logo: "/images/clients/Acerta.png" },
+    { name: "Get Driven", logo: "/images/clients/GetDriven.png" },
+    { name: "Proximus", logo: "/images/clients/Proximus.png" },
+    { name: "Torf", logo: "/images/clients/Torfs.png" },
+    { name: "Essent", logo: "/images/clients/Essent.png" },
   ],
 };
 
 export const skills = {
   eyebrow: "Toolbox",
   title: "Skills & tools.",
-  lede: "Specialised where it counts, fluent across the rest of the stack.",
+  lede: "Specialised where it counts, fluent across the rest of the stack. My expertise is in the concepts, not any single vendor, so the tools below are where I work most, not the limit of what I work with. Whatever platform you run, the foundation is the same.",
+  note: "Don't see your tool? That's fine. The concepts carry across platforms, so I can pick it up and advise on the best fit for your stack.",
   groups: [
     {
       title: "Measurement & tracking",
@@ -206,29 +213,52 @@ export const skills = {
 export const testimonials = {
   eyebrow: "Word on the street",
   title: "What clients say.",
-  // TODO(Dimitri): ALL three quotes below are PLACEHOLDERS - replace with
-  // real client quotes (name + role + company, with their permission).
+  // Each `quote` is an array of paragraphs; <strong> marks the key phrases.
   items: [
     {
-      quote:
-        "[PLACEHOLDER] Dimitri rebuilt our tracking from the ground up. For the first time we trust the numbers in our dashboards.",
-      author: "Name Surname",
-      role: "Marketing Manager",
-      company: "Company A",
+      quote: [
+        "Dimitri consistently demonstrated <strong>deep technical knowledge</strong> and provided invaluable input.",
+        "He is <strong>highly solution-oriented</strong> and always managed to find effective solutions to every challenge our digital media team presented to him.",
+      ],
+      author: "Simon De Pauw",
+      role: "Digital Media Manager",
+      company: "D'ieteren",
     },
     {
-      quote:
-        "[PLACEHOLDER] Rare combination: deeply technical, but explains it in a way the whole team understands.",
-      author: "Name Surname",
-      role: "Head of Digital",
-      company: "Company B",
+      quote: [
+        "Dimitri consistently demonstrated his <strong>deep technical expertise and strategic thinking</strong>, effectively leading the implementation across a complex landscape of <strong>over 20 brands and 90 domains</strong>.",
+        "He excels at ensuring projects are <strong>delivered on time and to a high standard</strong>.",
+      ],
+      author: "Tanu Sharma",
+      role: "Product Lead",
+      company: "Google",
     },
     {
-      quote:
-        "[PLACEHOLDER] Our BigQuery setup went from chaos to a single source of truth. Delivered on time, documented, no fuss.",
-      author: "Name Surname",
-      role: "Data Lead",
-      company: "Company C",
+      quote: [
+        "<strong>Dedicated and well-structured</strong> are two qualities Dimitri can directly apply to any project to move it forward. No matter how many times I challenged him, he consistently came up with detailed options and a clear recommendation on any technical matter.",
+        "Every organisation would benefit from Dimitri's <strong>expertise and versatility</strong> to make any digital analytics implementation a success.",
+      ],
+      author: "William Lallemant",
+      role: "Analytics Manager",
+      company: "D'ieteren",
+    },
+    {
+      quote: [
+        "He delivered <strong>efficient, high-quality work</strong> while perfectly integrating into the team and facilitating cross-BU initiatives.",
+        "Dimitri was a <strong>real asset</strong> to our team.",
+      ],
+      author: "Aurélie Vanneste",
+      role: "Operations & Analytics Director",
+      company: "D'ieteren",
+    },
+    {
+      quote: [
+        "The collaboration with Dimitri has always been <strong>very efficient</strong>. He is well structured and his knowledge continuously fed our digital thinking.",
+        "I could witness how he grew into a <strong>team leader</strong>, always there to support his team and collaborate with other business units. A real pleasure to work with.",
+      ],
+      author: "Frédéric Leclercq",
+      role: "Digital Team Lead",
+      company: "D'ieteren",
     },
   ],
 };
@@ -246,7 +276,7 @@ export const about = {
 
 export const faq = {
   eyebrow: "FAQ",
-  title: "Questions, answered.",
+  title: "Questions; answered.",
   // Written to match how people (and AI assistants) actually phrase searches.
   // Keep answers factual and self-contained: they feed the FAQPage schema.
   items: [
@@ -255,8 +285,8 @@ export const faq = {
       a: "A digital analytics developer builds and maintains the technical side of measurement: tracking plans and dataLayer design, analytics and tag management implementations (GA4, Amplitude, Mixpanel, Google Tag Manager, server-side tagging), mobile app tracking and BigQuery data pipelines. Think of it as the hands-on counterpart to an analytics consultant: less slideware, more working setups, handed off clean and documented for your BI team to build on.",
     },
     {
-      q: "Do you only work with Google Analytics 4?",
-      a: "No. GA4 is one of several platforms I work with, alongside Amplitude, Mixpanel and others, and for plenty of the teams I work with it isn't the right fit. Part of an audit is picking the platform that matches your product, team and budget, not defaulting to whatever's free. Google Tag Manager, server-side tagging, BigQuery, dbt/Dataform, Looker Studio, Power BI and mobile measurement (Firebase, AppsFlyer, other MMPs) round out the stack regardless of which analytics platform you land on.",
+      q: "What toolstack do you use?",
+      a: "Whatever fits the job. I'm tool-agnostic by design: my work revolves around digital analytics concepts (tracking architecture, dataLayer design, identity, consent, data modelling) that apply to any platform. The tools shown here (GA4, Amplitude, Mixpanel, Google Tag Manager, BigQuery, Firebase, AppsFlyer and others) are where I spend most of my time, but they're a sample, not a limit: if your stack uses something else, the same foundation still works and I can manage it. I also keep direct contacts at the major analytics vendors, so I can advise on which solution actually fits your product, team and budget, and help you decide on (and migrate to) a better-fitting stack rather than defaulting to whatever you already have.",
     },
     {
       q: "Do you handle mobile app tracking?",
@@ -264,7 +294,7 @@ export const faq = {
     },
     {
       q: "Will you build us a dashboard?",
-      a: "Not as part of the standard scope. My work ends when clean, structured, documented data lands in your warehouse or analytics platform, ready for your BI team or tooling to build on. That handoff is deliberate: it's where my expertise stops and your team's (or your BI partner's) begins.",
+      a: "Not as part of the standard scope. My work ends when clean, structured, documented data lands in your warehouse or analytics platform, ready for your BI team or tooling to build on. That handoff is deliberate: it's where my main expertise stops and your team's (or your BI partner's) begins.",
     },
     {
       q: "Can you make our tracking GDPR-compliant?",
@@ -276,7 +306,7 @@ export const faq = {
     },
     {
       q: "How much does it cost?",
-      a: "Pricing is tailored to scope: a focused audit is priced very differently from an ongoing embedded role. After the free intro call you get a fixed, itemised proposal, so there are never surprises on the invoice.",
+      a: "Pricing is tailored to scope. After the free intro call you get a fixed, itemised proposal, no surprises.",
     },
     {
       q: "Do you use AI in your work?",

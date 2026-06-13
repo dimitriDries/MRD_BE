@@ -11,3 +11,7 @@ node_modules/
 
 # macOS
 .DS_Store
+
+# local editor / dev-tool config
+.claude/
+.vscode/

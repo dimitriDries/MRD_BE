@@ -52,6 +52,16 @@ const loop = [...clients.logos, ...clients.logos];
     transition: filter 0.25s, opacity 0.25s;
   }
 
+  /* Normalise every logo to the same visual height, width auto. Overrides
+     the global `img { height: auto }` so logos with different aspect ratios
+     line up. object-fit keeps any whitespace from stretching. */
+  .clients__item img {
+    height: 34px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+
   .clients__item:hover {
     filter: none;
     opacity: 1;

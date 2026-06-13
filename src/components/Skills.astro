@@ -22,6 +22,11 @@ import { skills } from "../data/site";
         </div>
       ))}
     </div>
+
+    <p class="skills__note" data-reveal>
+      <span class="slash" aria-hidden="true"></span>
+      {skills.note}
+    </p>
   </div>
 </section>
 
@@ -30,6 +35,26 @@ import { skills } from "../data/site";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
+  }
+
+  .skills__note {
+    margin-top: clamp(2.75rem, 5vw, 3.75rem);
+    padding-top: clamp(1.75rem, 3vw, 2.25rem);
+    border-top: 1px solid color-mix(in srgb, var(--paper-inv) 15%, transparent);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--muted-inv);
+    font-size: 0.97rem;
+    line-height: 1.6;
+    max-width: 48rem;
+  }
+
+  .skills__note .slash {
+    flex: 0 0 auto;
+    width: 4px;
+    height: 1.5em;
+    margin-top: 0.05em;
   }
 
   .skills__group h3 {

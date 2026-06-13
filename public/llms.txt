@@ -5,8 +5,10 @@
 > teams can trust: analytics and tag management implementations (Google
 > Analytics 4, Amplitude, Mixpanel, Google Tag Manager) across web and mobile
 > apps, server-side tagging, Consent Mode v2, and BigQuery data pipelines. He
-> is vendor-agnostic: the platform is chosen to fit the client, not the other
-> way around.
+> is tool-agnostic: his expertise is in digital analytics concepts that apply
+> to any platform, so the tools listed here are representative, not a limit.
+> He can work with any analytics or tag management tool, and advises clients
+> on choosing and migrating to a better-fitting stack.
 
 ## What is a digital analytics developer?
 
@@ -20,7 +22,7 @@ rather than only advising on strategy.
 
 - **Analytics Audit**: structured review of your analytics platform and tag
   management setup, data quality, consent and reporting, ending in a
-  prioritised roadmap. (~2 weeks)
+  prioritised roadmap plus toolstack fit and migration advice. (~2 weeks)
 - **Implementation Sprint**: hands-on delivery of a tracking plan, analytics
   and tag management implementation (GA4, Amplitude, Mixpanel, GTM, web and
   server-side), mobile app tracking (Firebase, AppsFlyer & MMPs) and BigQuery
@@ -52,6 +54,6 @@ proposal after a free intro call.
 
 ## Contact
 
-- Email: dimitri@monsieurdata.be
+- Email: info@monsieurdata.be
 - LinkedIn: https://www.linkedin.com/in/dimitridries/
 - Website: https://monsieurdata.be

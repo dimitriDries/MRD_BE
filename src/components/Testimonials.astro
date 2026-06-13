@@ -14,7 +14,12 @@ import { testimonials } from "../data/site";
         <div class="t-slider__track">
           {testimonials.items.map((t, i) => (
             <blockquote class="t-card" data-slide={i}>
-              <p class="t-card__quote">“{t.quote}”</p>
+              <span class="t-card__mark" aria-hidden="true">“</span>
+              <div class="t-card__quote">
+                {t.quote.map((para) => (
+                  <p set:html={para} />
+                ))}
+              </div>
               <footer class="t-card__author">
                 <strong>{t.author}</strong>
                 <span>{t.role}, {t.company}</span>
@@ -59,16 +64,37 @@ import { testimonials } from "../data/site";
   .t-card {
     flex: 0 0 100%;
     margin: 0;
-    padding: 0 0.25rem;
+    padding: 0 clamp(0.25rem, 4vw, 2.5rem);
     text-align: center;
+  }
+
+  .t-card__mark {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 0.6;
+    color: var(--red);
+    margin-bottom: 0.6rem;
   }
 
   .t-card__quote {
     font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2.4vw, 1.55rem);
-    font-weight: 500;
-    line-height: 1.45;
-    letter-spacing: -0.01em;
+    font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: var(--muted);
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .t-card__quote p + p {
+    margin-top: 1rem;
+  }
+
+  .t-card__quote :global(strong) {
+    font-weight: 600;
+    color: var(--ink);
   }
 
   .t-card__author {

@@ -1,5 +1,9 @@
 ---
 import { packages, site } from "../data/site";
+
+// Map each tier's bookingKey to its cal.com link.
+const bookingHref = (key: string) =>
+  key === "partner" ? site.bookingUrlPartner : site.bookingUrl;
 ---
 
 <section class="section" id="services" aria-labelledby="packages-title">
@@ -28,7 +32,9 @@ import { packages, site } from "../data/site";
             ))}
           </ul>
           <a
-            href="#contact"
+            href={bookingHref(tier.bookingKey)}
+            target="_blank"
+            rel="noopener"
             class:list={["btn", tier.featured ? "btn--primary" : "btn--ghost", "tier__cta"]}
           >
             {tier.cta}

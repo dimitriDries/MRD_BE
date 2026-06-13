@@ -1,6 +1,6 @@
 # MonsieurData - website
 
-Astro static site for [monsieurdata.be](https://www.monsieurdata.be).
+Astro static site for [monsieurdata.be](https://monsieurdata.be).
 
 ## Commands
 

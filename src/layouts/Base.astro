@@ -21,8 +21,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-// TODO(Dimitri): design a real 1200x630 og-image (see CONTENT-TODO.md);
-// the logo thumbnail is a stopgap.
+// Social share image (1200x630 recommended).
 const ogImage = new URL("/images/mrd_thumbnail.png", Astro.site);
 
 const jsonLd = {
@@ -75,6 +74,11 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Tag Manager -->
+    <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${site.gtmId}');`} />
+    <!-- End Google Tag Manager -->
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -83,7 +87,6 @@ const jsonLd = {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
@@ -92,10 +95,20 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Structured data for search & AI assistants -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <Header />
     <main id="main">
       <slot />
