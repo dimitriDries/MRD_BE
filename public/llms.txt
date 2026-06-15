@@ -35,10 +35,10 @@ rather than only advising on strategy.
 
 Tracking plans and dataLayer design, analytics platforms (Google Analytics 4,
 Amplitude, Mixpanel), Google Tag Manager and server-side tagging, Consent
-Mode v2 and CMP integration, GDPR-compliant measurement, mobile app tracking
-(Firebase, AppsFlyer, mobile measurement partners), marketing pixels and
-attribution, BigQuery, SQL, dbt / Dataform, Python, Looker Studio, Power BI,
-marketing and app data models.
+Mode v2 and CMP integration, Customer Data Platforms (CDP), GDPR-compliant
+measurement, mobile app tracking (Firebase, AppsFlyer, mobile measurement
+partners), marketing pixels and attribution, BigQuery, SQL, dbt / Dataform,
+Python, Looker Studio, Power BI, marketing and app data models.
 
 ## How AI is used
 

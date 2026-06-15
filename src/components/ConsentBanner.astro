@@ -1,0 +1,464 @@
+---
+import { consentCategories } from "../data/consent";
+---
+
+<!--
+  Consent banner (first layer).
+  NOTE (revisit): the "Accept all" button uses .btn--primary (red) while
+  "Reject all" is a ghost button. That visual asymmetry is a form of nudging
+  and is not strictly compliant under EDPB guidance. Left as-is per Dimitri's
+  call for now; to fix, give reject + accept identical styling.
+  The banner is intentionally invasive: a full-viewport scrim blocks all page
+  interaction and scrolling until a consent decision is made.
+-->
+<div
+  id="mrd-cmp"
+  class="cmp"
+  data-state="hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cmp-banner-title"
+  aria-describedby="cmp-banner-text"
+>
+  <div class="cmp__banner">
+    <div class="cmp__banner-body">
+      <h2 id="cmp-banner-title" class="cmp__title">A note on cookies</h2>
+      <p id="cmp-banner-text" class="cmp__text">
+        I use strictly necessary cookies to make this site work, and (only with
+        your consent) analytics cookies to see how it's used. You can accept,
+        reject, or choose. Read more in the
+        <a href="/cookies">Cookie Policy</a> and
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+    </div>
+    <div class="cmp__actions">
+      <button type="button" class="btn btn--ghost cmp__btn" data-cmp="manage">Manage preferences</button>
+      <button type="button" class="btn btn--ghost cmp__btn" data-cmp="reject">Reject all</button>
+      <button type="button" class="btn btn--primary cmp__btn" data-cmp="accept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences modal (second layer) -->
+<div id="mrd-cmp-modal" class="cmp-modal" data-state="closed" aria-hidden="true">
+  <div class="cmp-modal__overlay" data-cmp="close"></div>
+  <div
+    class="cmp-modal__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cmp-modal-title"
+    tabindex="-1"
+  >
+    <div class="cmp-modal__head">
+      <h2 id="cmp-modal-title" class="cmp__title">Privacy preferences</h2>
+      <button type="button" class="cmp-modal__close" data-cmp="close" aria-label="Close preferences">&times;</button>
+    </div>
+    <p class="cmp__text">
+      Choose which cookies I may use. Strictly necessary cookies are always on.
+      You can change this anytime via "Cookie preferences" in the footer.
+    </p>
+
+    <ul class="cmp-cats">
+      {consentCategories.map((cat) => (
+        <li class="cmp-cat">
+          <div class="cmp-cat__head">
+            <span class="cmp-cat__label">{cat.label}</span>
+            <label class="cmp-switch">
+              <input
+                type="checkbox"
+                data-cat={cat.id}
+                checked={cat.required}
+                disabled={cat.required}
+              />
+              <span class="cmp-switch__track" aria-hidden="true"></span>
+              <span class="cmp-switch__text">{cat.required ? "Always on" : "Off"}</span>
+            </label>
+          </div>
+          <p class="cmp-cat__desc">{cat.description}</p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="cmp-modal__actions">
+      <button type="button" class="btn btn--ghost cmp__btn" data-cmp="reject">Reject all</button>
+      <button type="button" class="btn btn--ghost cmp__btn" data-cmp="save">Save choices</button>
+      <button type="button" class="btn btn--primary cmp__btn" data-cmp="accept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Full-viewport scrim: blocks all page interaction until a decision.
+     The banner is a centered rectangular card (same shell as the
+     preferences modal), so it can't be mistaken for a broken page. */
+  .cmp {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 2rem);
+    background: rgba(12, 9, 7, 0.55);
+    backdrop-filter: blur(2px);
+  }
+  .cmp[data-state="shown"] { display: flex; }
+  /* Lock page scroll while the banner is up (toggled from script). */
+  :global(body.cmp-locked) { overflow: hidden; }
+
+  .cmp__banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 30rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    background: var(--ink);
+    color: var(--paper-inv);
+    border-top: 4px solid var(--red);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cmp__banner-body { display: block; }
+  .cmp__title { font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .cmp__text { font-size: 0.92rem; color: var(--muted-inv); line-height: 1.55; }
+  .cmp__text a { color: var(--paper-inv); text-decoration: underline; text-underline-offset: 2px; }
+
+  .cmp__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  /* Buttons fill the card width and share it equally (one row on wider
+     cards, stacking on narrow screens). */
+  .cmp__actions .cmp__btn { flex: 1 1 8rem; }
+  .cmp__btn { font-size: 0.9rem; padding: 0.65rem 1.2rem; justify-content: center; text-align: center; }
+  /* On dark, ghost buttons need the inverted treatment */
+  .cmp .btn--ghost,
+  .cmp-modal .btn--ghost { color: var(--paper-inv); border-color: currentColor; }
+  .cmp .btn--ghost:hover,
+  .cmp-modal__panel .btn--ghost:hover { background: var(--paper-inv); color: var(--ink); }
+
+  /* Modal */
+  .cmp-modal { position: fixed; inset: 0; z-index: 1001; display: none; }
+  .cmp-modal[data-state="open"] { display: block; }
+  .cmp-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 9, 7, 0.55);
+    backdrop-filter: blur(2px);
+  }
+  .cmp-modal__panel {
+    position: relative;
+    max-width: 36rem;
+    margin: clamp(1rem, 6vh, 5rem) auto;
+    width: calc(100% - 2rem);
+    max-height: 86vh;
+    overflow-y: auto;
+    background: var(--ink);
+    color: var(--paper-inv);
+    border-top: 4px solid var(--red);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+  .cmp-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .cmp-modal__close {
+    background: none;
+    border: 0;
+    color: var(--muted-inv);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+  }
+  .cmp-modal__close:hover { color: var(--paper-inv); }
+
+  .cmp-cats { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 0.85rem; }
+  .cmp-cat {
+    border: 1px solid color-mix(in srgb, var(--paper-inv) 14%, transparent);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+  }
+  .cmp-cat__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .cmp-cat__label { font-family: var(--font-display); font-weight: 600; }
+  .cmp-cat__desc { font-size: 0.86rem; color: var(--muted-inv); margin-top: 0.5rem; line-height: 1.5; }
+
+  /* Toggle switch */
+  .cmp-switch { display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+  .cmp-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .cmp-switch__track {
+    width: 40px; height: 22px; border-radius: 999px;
+    background: color-mix(in srgb, var(--paper-inv) 22%, transparent);
+    position: relative; transition: background 0.2s var(--ease-out); flex: 0 0 auto;
+  }
+  .cmp-switch__track::after {
+    content: ""; position: absolute; top: 3px; left: 3px;
+    width: 16px; height: 16px; border-radius: 50%; background: #fff;
+    transition: transform 0.2s var(--ease-out);
+  }
+  .cmp-switch input:checked + .cmp-switch__track { background: var(--red); }
+  .cmp-switch input:checked + .cmp-switch__track::after { transform: translateX(18px); }
+  .cmp-switch input:disabled + .cmp-switch__track { opacity: 0.55; cursor: not-allowed; }
+  .cmp-switch input:focus-visible + .cmp-switch__track { outline: 2px solid var(--red); outline-offset: 2px; }
+  .cmp-switch__text { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-inv); min-width: 4.2em; }
+
+  .cmp-modal__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: flex-end; }
+
+  @media (max-width: 640px) {
+    .cmp__actions { width: 100%; }
+    .cmp__actions .cmp__btn { flex: 1 1 auto; justify-content: center; }
+    .cmp-modal__actions .cmp__btn { flex: 1 1 auto; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cmp-switch__track, .cmp-switch__track::after { transition: none; }
+  }
+</style>
+
+<script>
+  import { consentConfig, consentCategories, CONSENT_DEFAULT } from "../data/consent";
+
+  type Choice = Record<string, boolean>;
+  interface Record_ {
+    id: string;
+    version: string;
+    ts: number;
+    method: "accept_all" | "reject_all" | "custom";
+    categories: Choice;
+  }
+
+  const KEY = consentConfig.storageKey;
+  const cmp = document.getElementById("mrd-cmp");
+  const modal = document.getElementById("mrd-cmp-modal");
+  const panel = modal?.querySelector<HTMLElement>(".cmp-modal__panel");
+  let lastFocus: HTMLElement | null = null;
+
+  function gtag(...args: unknown[]) {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push(args);
+  }
+
+  function uuid(): string {
+    try {
+      return crypto.randomUUID();
+    } catch {
+      return "c_" + Date.now().toString(36) + Math.random().toString(36).slice(2);
+    }
+  }
+
+  function readRecord(): Record_ | null {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const r = JSON.parse(raw) as Record_;
+      const fresh =
+        r.version === consentConfig.policyVersion &&
+        Date.now() - r.ts < consentConfig.reconsentDays * 86400000;
+      return fresh ? r : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /** Translate granted categories into the full Consent Mode v2 signal set. */
+  function signalsFor(choice: Choice): Record<string, "granted" | "denied"> {
+    const out = { ...CONSENT_DEFAULT };
+    for (const cat of consentCategories) {
+      if (choice[cat.id]) for (const sig of cat.signals) out[sig] = "granted";
+    }
+    return out;
+  }
+
+  function apply(choice: Choice, method: Record_["method"]) {
+    const record: Record_ = {
+      id: uuid(),
+      version: consentConfig.policyVersion,
+      ts: Date.now(),
+      method,
+      categories: choice,
+    };
+    // 1. Persist (localStorage + first-party cookie).
+    try {
+      const json = JSON.stringify(record);
+      localStorage.setItem(KEY, json);
+      const maxAge = consentConfig.reconsentDays * 86400;
+      document.cookie = `${KEY}=${encodeURIComponent(json)}; max-age=${maxAge}; path=/; SameSite=Lax`;
+    } catch {}
+
+    // 2. Set Google Consent Mode v2. This does NOT block GTM (the container
+    //    loads regardless); it updates the consent state for consent-aware tags.
+    gtag("consent", "update", signalsFor(choice));
+
+    // 3. Emit a dataLayer event for GTM triggers / analytics. The resolved
+    //    signal map is included as data for convenience/debugging in GTM.
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: "consent_update",
+      consent_method: method,
+      consent_version: record.version,
+      consent_categories: choice,
+      consent_signals: signalsFor(choice),
+    });
+
+    // 4. Optional: POST to the audit-log endpoint (text/plain avoids a CORS preflight).
+    if (consentConfig.logEndpoint) {
+      try {
+        fetch(consentConfig.logEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            ...record,
+            url: location.href,
+            referrer: document.referrer || null,
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+          }),
+          keepalive: true,
+        }).catch(() => {});
+      } catch {}
+    }
+
+    hideBanner();
+    closeModal();
+  }
+
+  function choiceFromCategories(value: boolean): Choice {
+    const c: Choice = {};
+    for (const cat of consentCategories) c[cat.id] = cat.required ? true : value;
+    return c;
+  }
+
+  function choiceFromModal(): Choice {
+    const c: Choice = {};
+    for (const cat of consentCategories) {
+      const input = modal?.querySelector<HTMLInputElement>(`input[data-cat="${cat.id}"]`);
+      c[cat.id] = cat.required ? true : !!input?.checked;
+    }
+    return c;
+  }
+
+  function syncModalToRecord(rec: Record_ | null) {
+    for (const cat of consentCategories) {
+      const input = modal?.querySelector<HTMLInputElement>(`input[data-cat="${cat.id}"]`);
+      if (!input) continue;
+      const on = cat.required ? true : !!rec?.categories[cat.id];
+      input.checked = on;
+      const text = input.parentElement?.querySelector(".cmp-switch__text");
+      if (text && !cat.required) text.textContent = on ? "On" : "Off";
+    }
+  }
+
+  function focusables(root: HTMLElement | null): HTMLElement[] {
+    if (!root) return [];
+    return Array.from(
+      root.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((el) => el.offsetParent !== null);
+  }
+
+  // Keep keyboard focus inside the blocking banner; ignore Escape (the user
+  // must make a choice). If the preferences modal is open, it traps instead.
+  function trapBannerFocus(e: KeyboardEvent) {
+    if (cmp?.getAttribute("data-state") !== "shown") return;
+    if (modal?.getAttribute("data-state") === "open") return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const items = focusables(cmp);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement as HTMLElement;
+    if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function showBanner() {
+    cmp?.setAttribute("data-state", "shown");
+    document.body.classList.add("cmp-locked");
+    document.addEventListener("keydown", trapBannerFocus);
+    focusables(cmp)[0]?.focus();
+  }
+  function hideBanner() {
+    cmp?.setAttribute("data-state", "hidden");
+    document.body.classList.remove("cmp-locked");
+    document.removeEventListener("keydown", trapBannerFocus);
+  }
+  function openModal() {
+    lastFocus = document.activeElement as HTMLElement;
+    syncModalToRecord(readRecord());
+    modal?.setAttribute("data-state", "open");
+    modal?.setAttribute("aria-hidden", "false");
+    document.body.classList.add("cmp-locked");
+    panel?.focus();
+    document.addEventListener("keydown", onKeydown);
+  }
+  function closeModal() {
+    modal?.setAttribute("data-state", "closed");
+    modal?.setAttribute("aria-hidden", "true");
+    document.removeEventListener("keydown", onKeydown);
+    // Keep scroll locked if the blocking banner is still up behind the modal.
+    if (cmp?.getAttribute("data-state") !== "shown") {
+      document.body.classList.remove("cmp-locked");
+    }
+    lastFocus?.focus?.();
+  }
+  function onKeydown(e: KeyboardEvent) {
+    if (e.key === "Escape") closeModal();
+  }
+
+  // Live-update the "On/Off" label as the user toggles.
+  modal?.querySelectorAll<HTMLInputElement>('input[data-cat]').forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input.disabled) return;
+      const text = input.parentElement?.querySelector(".cmp-switch__text");
+      if (text) text.textContent = input.checked ? "On" : "Off";
+    });
+  });
+
+  // Button delegation across banner + modal.
+  document.addEventListener("click", (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>("[data-cmp]");
+    if (!el) return;
+    const action = el.dataset.cmp;
+    if (action === "accept") apply(choiceFromCategories(true), "accept_all");
+    else if (action === "reject") apply(choiceFromCategories(false), "reject_all");
+    else if (action === "save") apply(choiceFromModal(), "custom");
+    else if (action === "manage") openModal();
+    else if (action === "close") closeModal();
+  });
+
+  // Footer / anywhere: [data-cookie-preferences] reopens the modal (withdraw = reopen + toggle off + save).
+  document.querySelectorAll<HTMLElement>("[data-cookie-preferences]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Expose a tiny API (handy for a GTM "open preferences" trigger later).
+  (window as any).MRDConsent = { open: openModal, getConsent: readRecord };
+
+  // First load: show the banner only if there's no valid stored choice.
+  if (!readRecord()) showBanner();
+</script>

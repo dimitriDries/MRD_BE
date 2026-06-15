@@ -1,0 +1,48 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { company } from "../data/legal";
+import { site } from "../data/site";
+---
+
+<LegalLayout
+  title="Legal Notice"
+  description="Legal and business identification details for MonsieurData."
+>
+  <p>
+    This website, <strong>monsieurdata.be</strong>, is operated by:
+  </p>
+  <ul>
+    <li><strong>{company.legalName}</strong> ({company.legalForm}), trading as {company.tradingName}</li>
+    <li>{company.address}</li>
+    <li>Enterprise number: {company.enterpriseNumber}</li>
+    <li>VAT: {company.vat}</li>
+    <li>Email: <a href={`mailto:${company.generalEmail}`}>{company.generalEmail}</a></li>
+  </ul>
+
+  <h2>Hosting</h2>
+  <p>
+    The site is a static website hosted on GitHub Pages (GitHub, Inc., a
+    Microsoft company), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107,
+    USA.
+  </p>
+
+  <h2>Intellectual property</h2>
+  <p>
+    Unless stated otherwise, the content, design, logo and "slash" mark on this
+    site are the property of {company.tradingName} and may not be reproduced
+    without permission.
+  </p>
+
+  <h2>Privacy &amp; cookies</h2>
+  <p>
+    See the <a href="/privacy">Privacy Policy</a> and
+    <a href="/cookies">Cookie Policy</a> for how personal data and cookies are
+    handled.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this notice? Email
+    <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</LegalLayout>

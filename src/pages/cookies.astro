@@ -1,0 +1,76 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { cookieInventory } from "../data/legal";
+import { consentConfig } from "../data/consent";
+
+const sections = cookieInventory.filter(
+  (s) => !s.marketingOnly || consentConfig.enableMarketing,
+);
+---
+
+<LegalLayout
+  title="Cookie Policy"
+  description="Which cookies and similar technologies MonsieurData uses, why, and how to manage them."
+>
+  <div class="legal-note">
+    <p>
+      This site loads non-essential cookies <strong>only after you opt in</strong>.
+      Until then, just the strictly necessary cookie below is used. You can
+      change or withdraw your choice anytime via
+      <button type="button" class="link" data-cookie-preferences style="background:none;border:0;padding:0;cursor:pointer;font:inherit;">Cookie preferences</button>
+      in the footer.
+    </p>
+  </div>
+
+  <h2>What cookies are</h2>
+  <p>
+    Cookies (and similar technologies like local storage) are small pieces of
+    data stored in your browser. Some are essential for the site to work; others
+    help me understand how the site is used. I group them into categories you
+    can accept or refuse.
+  </p>
+
+  <h2>How consent works here</h2>
+  <p>
+    I use Google Consent Mode v2. When the page loads, all non-essential
+    storage is set to <strong>denied</strong> by default. Your choice in the
+    cookie banner updates this signal, and tags are only allowed to run for the
+    categories you accept. Blocking is enforced through Google Tag Manager.
+  </p>
+
+  <h2>Cookies used on this site</h2>
+  {sections.map((section) => (
+    <>
+      <h3>{section.category}</h3>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Provider</th><th>Purpose</th><th>Duration</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          {section.items.map((item) => (
+            <tr>
+              <td>{item.name}</td>
+              <td>{item.provider}</td>
+              <td>{item.purpose}</td>
+              <td>{item.duration}</td>
+              <td>{item.type}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))}
+
+  <h2>Managing your choice</h2>
+  <p>
+    Open <button type="button" class="link" data-cookie-preferences style="background:none;border:0;padding:0;cursor:pointer;font:inherit;">Cookie preferences</button>
+    anytime to change which categories you allow, or to withdraw consent. You
+    can also clear cookies and site data through your browser settings.
+  </p>
+
+  <h2>More information</h2>
+  <p>
+    For how I handle personal data more broadly, see the
+    <a href="/privacy">Privacy Policy</a>.
+  </p>
+</LegalLayout>

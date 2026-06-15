@@ -10,9 +10,9 @@
 export const site = {
   name: "MonsieurData",
   url: "https://monsieurdata.be",
-  title: "Digital Analytics Developer | GA4, GTM & BigQuery | MonsieurData",
+  title: "Digital Analytics Developer | Server-Side Tracking, CDP & BigQuery | MonsieurData",
   description:
-    "GA4, GTM, server-side tagging and Consent Mode v2 for web and mobile apps, with BigQuery pipelines built to last. Remote-first digital analytics developer.",
+    "Tag management, server-side tagging, Consent Mode v2 and Customer Data Platforms (CDP) for web and mobile apps, with BigQuery pipelines built to last. Remote-first digital analytics developer.",
   locale: "en",
   // Google Tag Manager container. Loaded site-wide via the Base layout.
   gtmId: "GTM-PLDJDXDD",
@@ -54,7 +54,7 @@ export const hero = {
   // Proof bar under the hero. Numbers count up on scroll.
   stats: [
     { value: yearsActive, suffix: "+", label: "years in digital analytics" },
-    { value: 8, suffix: "", label: "clients helped" },
+    { value: 8, suffix: "+", label: "clients helped" },
     { value: 30, suffix: "+", label: "websites tracked" },
     { value: 4, suffix: "+", label: "mobile apps tracked" },
   ],
@@ -178,11 +178,12 @@ export const skills = {
       title: "Measurement & tracking",
       items: [
         "Tracking plans & dataLayer design",
-        "GA4, Amplitude & Mixpanel",
-        "Google Tag Manager & server-side tagging",
-        "Mobile app tracking (Firebase, AppsFlyer & MMPs)",
-        "Consent Mode v2 / CMPs",
-        "Marketing pixels & attribution",
+        "Analytics platforms (GA4, Amplitude, Mixpanel etc.)",
+        "Tag Management & server-side tagging (Google Tag Manager, Adobe Launch etc.)",
+        "Mobile app tracking (Firebase, AppsFlyer, Branch, etc.)",
+        "Consent Mode v2 / consent management platforms (CMPs)",
+        "Marketing pixels & attribution (Google Ads, Facebook, etc.)",
+        "Customer Data Platforms (CDP)",
       ],
     },
     {
@@ -269,7 +270,7 @@ export const about = {
   paragraphs: [
     "I'm Dimitri Dries, an independent analytics developer working at the intersection of business, technology and marketing. I design and build the data collection infrastructure that makes reliable, data-driven decisions possible: tracking architecture, dataLayer design, tag management (web and server-side), marketing pixels, attribution, and getting the right data into your analytics tools, ad platforms and data warehouse. I'm platform-agnostic: GA4, Amplitude, Mixpanel or whatever your team already runs, the architecture comes first and the platform fits around it.",
     "Before founding MonsieurData in 2024, I spent five years embedded at D'Ieteren, leading the analytics transformation of a multi-brand automotive group from fragmented, low-maturity tracking to a cross-brand foundation used by every team. Since then I've rebuilt analytics foundations from scratch for fast-scaling e-commerce brands, fintech platforms and enterprise organisations, including mobile measurement ecosystems built across web and app.",
-    "I don't build on top of your stack. I build at its core, so it lasts and scales as your company grows. I work end-to-end and self-sufficiently. You don't need to project-manage me.",
+    "I don't build on top of your stack. I build at its core, so it lasts and scales as your company grows. I work end-to-end and self-sufficiently. You won't need to project-manage me.",
   ],
   portrait: "/images/DimitriDries_ZW_NoBG.png",
 };
