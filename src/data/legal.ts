@@ -13,12 +13,12 @@ import { site } from "./site";
 
 export const company = {
   // Identity (GDPR Art. 13 - controller details). REQUIRED before going live.
-  legalName: "[TODO: legal name — e.g. Dimitri Dries / MonsieurData BV]",
+  legalName: "MonsieurData BV",
   tradingName: "MonsieurData",
-  legalForm: "[TODO: e.g. sole proprietorship (eenmanszaak) or BV]",
-  address: "[TODO: street + number, postcode, city, Belgium]",
+  legalForm: "BV",
+  address: "",
   // Pulled from the footer VAT line; confirm it's correct.
-  enterpriseNumber: "BE 1007.857.714",
+  enterpriseNumber: "1007857714",
   vat: "BTW BE 1007.857.714",
 
   // Contact for privacy matters / data-subject requests.
