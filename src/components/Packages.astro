@@ -4,9 +4,18 @@ import { packages, site } from "../data/site";
 // Map each tier's bookingKey to its cal.com link.
 const bookingHref = (key: string) =>
   key === "partner" ? site.bookingUrlPartner : site.bookingUrl;
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 ---
 
-<section class="section" id="services" aria-labelledby="packages-title">
+<section
+  class="section"
+  id="services"
+  aria-labelledby="packages-title"
+  data-section="packages"
+  data-content
+  data-content-type="section"
+  data-content-id="packages"
+>
   <div class="container">
     <div class="section-head">
       <p class="eyebrow" data-reveal>{packages.eyebrow}</p>
@@ -20,6 +29,11 @@ const bookingHref = (key: string) =>
           class:list={["tier", { "tier--featured": tier.featured }]}
           data-reveal
           style={`--reveal-delay: ${i * 0.1}s`}
+          data-content
+          data-content-type="package"
+          data-content-id={slug(tier.name)}
+          data-content-name={tier.name}
+          data-interactive
         >
           {tier.featured && <p class="tier__badge">{tier.badge}</p>}
           <h3>{tier.name}</h3>
@@ -36,6 +50,8 @@ const bookingHref = (key: string) =>
             target="_blank"
             rel="noopener"
             class:list={["btn", tier.featured ? "btn--primary" : "btn--ghost", "tier__cta"]}
+            data-cta
+            data-cta-id={tier.name.toLowerCase()}
           >
             {tier.cta}
           </a>
@@ -45,7 +61,7 @@ const bookingHref = (key: string) =>
 
     <p class="tiers__note" data-reveal>
       {packages.note}
-      <a class="link" href={`mailto:${site.email}`}>Or just send a mail.</a>
+      <a class="link" href={`mailto:${site.email}`} data-cta data-cta-id="email">Or just send a mail.</a>
     </p>
   </div>
 </section>

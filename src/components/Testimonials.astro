@@ -2,7 +2,15 @@
 import { testimonials } from "../data/site";
 ---
 
-<section class="section" id="testimonials" aria-labelledby="testimonials-title">
+<section
+  class="section"
+  id="testimonials"
+  aria-labelledby="testimonials-title"
+  data-section="testimonials"
+  data-content
+  data-content-type="section"
+  data-content-id="testimonials"
+>
   <div class="container">
     <div class="section-head">
       <p class="eyebrow" data-reveal>{testimonials.eyebrow}</p>
@@ -13,7 +21,14 @@ import { testimonials } from "../data/site";
       <div class="t-slider__viewport">
         <div class="t-slider__track">
           {testimonials.items.map((t, i) => (
-            <blockquote class="t-card" data-slide={i}>
+            <blockquote
+              class="t-card"
+              data-slide={i}
+              data-content
+              data-content-type="testimonial"
+              data-content-id={`testimonial_${String(i + 1).padStart(2, "0")}`}
+              data-content-name={`${t.author}, ${t.company}`}
+            >
               <span class="t-card__mark" aria-hidden="true">“</span>
               <div class="t-card__quote">
                 {t.quote.map((para) => (

@@ -2,7 +2,15 @@
 import { contact, site } from "../data/site";
 ---
 
-<section class="section section--dark cta" id="contact" aria-labelledby="contact-title">
+<section
+  class="section section--dark cta"
+  id="contact"
+  aria-labelledby="contact-title"
+  data-section="contact"
+  data-content
+  data-content-type="section"
+  data-content-id="contact"
+>
   <span class="cta__slash" aria-hidden="true"></span>
   <div class="container cta__inner">
     <p class="eyebrow" data-reveal>{contact.eyebrow}</p>
@@ -10,12 +18,12 @@ import { contact, site } from "../data/site";
     <p class="lede" data-reveal style="--reveal-delay: 0.12s">{contact.lede}</p>
 
     <div class="cta__actions" data-reveal style="--reveal-delay: 0.2s">
-      <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener">
+      <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener" data-cta data-cta-id="book intro call">
         {contact.primaryCta.label}
       </a>
       <p class="cta__alt">
         {contact.altLabel}
-        <a class="link" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="link" href={`mailto:${site.email}`} data-cta data-cta-id="email">{site.email}</a>
       </p>
     </div>
   </div>

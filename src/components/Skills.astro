@@ -2,7 +2,15 @@
 import { skills } from "../data/site";
 ---
 
-<section class="section section--dark" id="skills" aria-labelledby="skills-title">
+<section
+  class="section section--dark"
+  id="skills"
+  aria-labelledby="skills-title"
+  data-section="skills"
+  data-content
+  data-content-type="section"
+  data-content-id="skills"
+>
   <div class="container">
     <div class="section-head">
       <p class="eyebrow" data-reveal>{skills.eyebrow}</p>
@@ -12,11 +20,18 @@ import { skills } from "../data/site";
 
     <div class="skills">
       {skills.groups.map((group, i) => (
-        <div class="skills__group" data-reveal style={`--reveal-delay: ${i * 0.1}s`}>
+        <div
+          class="skills__group"
+          data-reveal
+          style={`--reveal-delay: ${i * 0.1}s`}
+          data-content
+          data-content-type="skill group"
+          data-content-name={`skill group ${i + 1}`}
+        >
           <h3>{group.title}</h3>
           <ul>
             {group.items.map((item) => (
-              <li class="skills__chip">{item}</li>
+              <li class="skills__chip" data-interactive data-content-type="skill" data-content-name={item}>{item}</li>
             ))}
           </ul>
         </div>

@@ -2,9 +2,9 @@
 import { nav, site } from "../data/site";
 ---
 
-<header class="header">
+<header class="header" data-section="header">
   <div class="container header__inner">
-    <a href="/" class="header__brand" aria-label={`${site.name} home`}>
+    <a href="/" class="header__brand" aria-label={`${site.name} home`} data-cta data-cta-id="logo" data-cta-type="link">
       <img src="/images/mrd_thumbnail.png" alt="" width="40" height="40" loading="eager" />
       <span>Monsieur<strong>Data</strong></span>
     </a>
@@ -12,12 +12,12 @@ import { nav, site } from "../data/site";
     <nav class="header__nav" aria-label="Main navigation">
       <ul>
         {nav.links.map((link) => (
-          <li><a href={link.href}>{link.label}</a></li>
+          <li><a href={link.href} data-cta data-cta-id={link.href.split("#").pop()} data-cta-type="link" data-cta-category="navigation">{link.label}</a></li>
         ))}
       </ul>
     </nav>
 
-    <a href={nav.cta.href} class="btn btn--primary header__cta">{nav.cta.label}</a>
+    <a href={nav.cta.href} class="btn btn--primary header__cta" data-cta data-cta-id="book intro call">{nav.cta.label}</a>
 
     <button class="header__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
@@ -29,7 +29,7 @@ import { nav, site } from "../data/site";
       {nav.links.map((link) => (
         <li><a href={link.href}>{link.label}</a></li>
       ))}
-      <li><a href={nav.cta.href} class="btn btn--primary">{nav.cta.label}</a></li>
+      <li><a href={nav.cta.href} class="btn btn--primary" data-cta data-cta-id="book intro call">{nav.cta.label}</a></li>
     </ul>
   </div>
 </header>

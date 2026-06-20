@@ -5,11 +5,12 @@ import { legalUpdated } from "../data/legal";
 interface Props {
   title: string;
   description?: string;
+  pageName?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, pageName = "legal" } = Astro.props;
 ---
 
-<Base title={`${title} | MonsieurData`} description={description}>
+<Base title={`${title} | MonsieurData`} description={description} pageName={pageName} pageType="legal">
   <article class="section legal">
     <div class="container legal__inner">
       <p class="eyebrow">Legal</p>

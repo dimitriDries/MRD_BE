@@ -2,7 +2,14 @@
 import { hero } from "../data/site";
 ---
 
-<section class="hero section--dark" aria-label="Introduction">
+<section
+  class="hero section--dark"
+  aria-label="Introduction"
+  data-section="hero"
+  data-content
+  data-content-type="section"
+  data-content-id="hero"
+>
   <div class="hero__slashes" aria-hidden="true">
     <span class="hero__slash hero__slash--1" data-parallax="0.18"></span>
     <span class="hero__slash hero__slash--2" data-parallax="0.10"></span>
@@ -17,8 +24,8 @@ import { hero } from "../data/site";
     </h1>
     <p class="hero__sub" data-reveal style="--reveal-delay: 0.16s">{hero.sub}</p>
     <div class="hero__actions" data-reveal style="--reveal-delay: 0.24s">
-      <a href={hero.primaryCta.href} class="btn btn--primary">{hero.primaryCta.label}</a>
-      <a href={hero.secondaryCta.href} class="btn btn--ghost">{hero.secondaryCta.label}</a>
+      <a href={hero.primaryCta.href} class="btn btn--primary" data-cta data-cta-id="book intro call">{hero.primaryCta.label}</a>
+      <a href={hero.secondaryCta.href} class="btn btn--ghost" data-cta data-cta-id="see how i work">{hero.secondaryCta.label}</a>
     </div>
 
     <dl class="hero__stats" data-reveal style="--reveal-delay: 0.32s">

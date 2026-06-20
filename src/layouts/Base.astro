@@ -24,12 +24,19 @@ interface Props {
   description?: string;
   /** Set on pages that should stay out of search engines (e.g. blog pre-launch). */
   noindex?: boolean;
+  /** Tracking framework page identity (language-independent, set in code).
+      page_name: stable name (home | blog_index | post slug | privacy_policy ...)
+      page_type: traffic category (home | blog | blog_post | not_found | legal) */
+  pageName?: string;
+  pageType?: string;
 }
 
 const {
   title = site.title,
   description = site.description,
   noindex = false,
+  pageName = "other",
+  pageType = "other",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -117,7 +124,7 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body>
+  <body data-page-name={pageName} data-page-type={pageType}>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
@@ -135,6 +142,12 @@ const jsonLd = {
     </main>
     <Footer />
     <ConsentBanner />
+
+    <!-- dataLayer tracking framework: reads data-* attributes and pushes
+         page_impression / button_click / content_impression / content_interaction. -->
+    <script>
+      import "../scripts/tracking";
+    </script>
 
     <script>
       // Scroll reveal: elements with [data-reveal] rise in once, when 15% visible.

@@ -2,7 +2,15 @@
 import { about, site } from "../data/site";
 ---
 
-<section class="section about" id="about" aria-labelledby="about-title">
+<section
+  class="section about"
+  id="about"
+  aria-labelledby="about-title"
+  data-section="about"
+  data-content
+  data-content-type="section"
+  data-content-id="about"
+>
   <div class="container about__grid">
     <div class="about__text">
       <p class="eyebrow" data-reveal>{about.eyebrow}</p>
@@ -17,6 +25,9 @@ import { about, site } from "../data/site";
         target="_blank"
         data-reveal
         style="--reveal-delay: 0.3s"
+        data-cta
+        data-cta-id="linkedin"
+        data-cta-type="link"
       >
         Connect on LinkedIn →
       </a>

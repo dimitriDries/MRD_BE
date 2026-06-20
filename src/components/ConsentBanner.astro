@@ -301,15 +301,20 @@ import { consentCategories } from "../data/consent";
     //    loads regardless); it updates the consent state for consent-aware tags.
     gtag("consent", "update", signalsFor(choice));
 
-    // 3. Emit a dataLayer event for GTM triggers / analytics. The resolved
-    //    signal map is included as data for convenience/debugging in GTM.
+    // 3. Emit the `consent_change` dataLayer event (tracking plan v1.1).
+    //    consent_action: accept_all | reject_all | save_choices.
+    const actionMap: Record<Record_["method"], string> = {
+      accept_all: "accept all",
+      reject_all: "reject all",
+      custom: "save choices",
+    };
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({
-      event: "consent_update",
-      consent_method: method,
+      event: "consent_change",
+      consent_action: actionMap[method],
+      consent_analytics: choice.analytics ? "granted" : "denied",
+      consent_marketing: choice.marketing ? "granted" : "denied",
       consent_version: record.version,
-      consent_categories: choice,
-      consent_signals: signalsFor(choice),
     });
 
     // 4. Optional: POST to the audit-log endpoint (text/plain avoids a CORS preflight).

@@ -9,7 +9,15 @@ const iconSrc: Record<string, string> = {
 };
 ---
 
-<section class="section" id="approach" aria-labelledby="valueprop-title">
+<section
+  class="section"
+  id="approach"
+  aria-labelledby="valueprop-title"
+  data-section="value props"
+  data-content
+  data-content-type="section"
+  data-content-id="value props"
+>
   <div class="container">
     <div class="section-head">
       <p class="eyebrow" data-reveal>{valueProp.eyebrow}</p>
@@ -19,7 +27,15 @@ const iconSrc: Record<string, string> = {
 
     <div class="pillars">
       {valueProp.pillars.map((pillar, i) => (
-        <article class="pillar" data-reveal style={`--reveal-delay: ${i * 0.08}s`}>
+        <article
+          class="pillar"
+          data-reveal
+          style={`--reveal-delay: ${i * 0.08}s`}
+          data-content
+          data-content-type="value prop"
+          data-content-name={pillar.icon}
+          data-interactive
+        >
           <img src={iconSrc[pillar.icon]} alt="" width="44" height="44" loading="lazy" />
           <h3>{pillar.title}</h3>
           <p>{pillar.body}</p>

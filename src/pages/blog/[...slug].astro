@@ -17,7 +17,7 @@ const { Content } = await render(post);
 // PRE-LAUNCH: noindex until the blog officially launches.
 ---
 
-<Base title={`${post.data.title} | ${site.name}`} description={post.data.description} noindex={true}>
+<Base title={`${post.data.title} | ${site.name}`} description={post.data.description} noindex={true} pageName={post.data.title} pageType="blog post">
   <article class="section">
     <div class="container post">
       <p class="eyebrow">Blog</p>

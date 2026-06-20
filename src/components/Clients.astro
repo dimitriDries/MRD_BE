@@ -2,9 +2,18 @@
 import { clients } from "../data/site";
 // Track is duplicated for a seamless CSS marquee loop.
 const loop = [...clients.logos, ...clients.logos];
+// Stable, language-independent slug from the (language-independent) brand name.
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 ---
 
-<section class="section clients" aria-labelledby="clients-title">
+<section
+  class="section clients"
+  aria-labelledby="clients-title"
+  data-section="clients"
+  data-content
+  data-content-type="section"
+  data-content-id="clients"
+>
   <div class="container">
     <div class="clients__head" data-reveal>
       <p class="eyebrow">{clients.eyebrow}</p>
@@ -14,15 +23,27 @@ const loop = [...clients.logos, ...clients.logos];
 
   <div class="marquee" data-reveal style="--reveal-delay: 0.1s">
     <div class="marquee__track">
-      {loop.map((client) => (
-        <div class="clients__item">
-          {client.logo ? (
-            <img src={client.logo} alt={client.name} height="36" loading="lazy" />
-          ) : (
-            <span class="clients__placeholder">{client.name}</span>
-          )}
-        </div>
-      ))}
+      {loop.map((client, i) => {
+        // Only the first copy is tracked; the second is the marquee clone.
+        const attrs = i < clients.logos.length
+          ? {
+              "data-content": true,
+              "data-content-type": "client",
+              "data-content-id": slug(client.name),
+              "data-content-name": client.name,
+              "data-interactive": true,
+            }
+          : {};
+        return (
+          <div class="clients__item" {...attrs}>
+            {client.logo ? (
+              <img src={client.logo} alt={client.name} height="36" loading="lazy" />
+            ) : (
+              <span class="clients__placeholder">{client.name}</span>
+            )}
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
