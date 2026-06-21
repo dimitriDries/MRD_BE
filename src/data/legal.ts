@@ -42,7 +42,7 @@ export const authorities = {
 };
 
 /** Last-updated date shown on the legal pages (keep in step with consent policyVersion). */
-export const legalUpdated = "14 June 2026";
+export const legalUpdated = "21 June 2026";
 
 /**
  * Cookie / local-storage inventory for the Cookie Policy table.
@@ -73,6 +73,30 @@ export const cookieInventory = [
         duration: "Up to 2 years",
         type: "Cookie",
       },
+      {
+        name: "_clck",
+        provider: "Microsoft Clarity",
+        purpose:
+          "Stores a Clarity user identifier so repeat visits are attributed to the same user for usage analytics, session replay and heatmaps. Set only after you accept analytics.",
+        duration: "1 year",
+        type: "Cookie",
+      },
+      {
+        name: "_clsk",
+        provider: "Microsoft Clarity",
+        purpose:
+          "Links the page views in a single visit into one Clarity session recording. Set only after you accept analytics.",
+        duration: "1 day",
+        type: "Cookie",
+      },
+      {
+        name: "CLID, MUID, ANONCHK, SM",
+        provider: "Microsoft Clarity",
+        purpose:
+          "Identify the browser to power session replay and heatmap analytics (set on Microsoft / clarity.ms domains). Set only after you accept analytics.",
+        duration: "Up to 1 year",
+        type: "Cookie",
+      },
     ],
   },
   // Marketing row appears in the policy only when consentConfig.enableMarketing is true.
@@ -100,6 +124,12 @@ export const processors = [
   {
     name: "Google (Google Tag Manager, Google Analytics)",
     role: "Tag management and, once enabled, website analytics.",
+    location: "EU / United States",
+    safeguard: "EU-US Data Privacy Framework + Standard Contractual Clauses",
+  },
+  {
+    name: "Microsoft Clarity (Microsoft Corporation)",
+    role: "Product analytics with session replay and heatmaps: records pseudonymised interaction data (clicks, scrolls, mouse movement, page structure) to show how the site is used. Text and form-field contents are masked by default. Runs only after you accept analytics.",
     location: "EU / United States",
     safeguard: "EU-US Data Privacy Framework + Standard Contractual Clauses",
   },
