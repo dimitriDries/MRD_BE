@@ -327,5 +327,4 @@ export const contact = {
   title: "Let's look at your data.",
   lede: "A free 30-minute intro call: you bring the questions, I'll bring an honest first take. No pitch deck, no obligations.",
   primaryCta: { label: "Book a free intro call", subject: "Booking a free intro call" }, // href = mailto(subject)
-  altLabel: "Prefer email?",
 };
