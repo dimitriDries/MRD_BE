@@ -28,9 +28,14 @@ export const site = {
   },
 };
 
+/** Prepended to every pre-filled email subject, so site leads are easy to filter. */
+const SUBJECT_PREFIX = "Website contact - ";
+
 /** site.contactUrl with a pre-filled email subject (URL-encoded, spaces as %20). */
 export const mailto = (subject?: string) =>
-  subject ? `${site.contactUrl}?subject=${encodeURIComponent(subject)}` : site.contactUrl;
+  subject
+    ? `${site.contactUrl}?subject=${encodeURIComponent(SUBJECT_PREFIX + subject)}`
+    : site.contactUrl;
 
 export const nav = {
   links: [
