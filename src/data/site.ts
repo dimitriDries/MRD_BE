@@ -18,16 +18,24 @@ export const site = {
   gtmId: "GTM-PLDJDXDD",
   email: "info@monsieurdata.be",
   linkedin: "https://www.linkedin.com/in/dimitridries/",
-  // 30-min intro call. Also used by the Audit & Sprint package buttons.
-  bookingUrl: "https://cal.com/athena-mrd-ms0iie/30min",
-  // 45-min call for the embedded Data Partner conversation.
-  bookingUrlPartner: "https://cal.com/athena-mrd-ms0iie/monsieurdata-45-min-meeting",
+  // Where every "book / get in touch" button sends people (package cards and
+  // the contact section). Email only; no scheduling tool.
+  contactUrl: "mailto:info@monsieurdata.be",
   owner: {
     name: "Dimitri Dries",
     role: "Digital Analytics Developer",
     location: "remote-first, worldwide",
   },
 };
+
+/** Prepended to every pre-filled email subject, so site leads are easy to filter. */
+const SUBJECT_PREFIX = "Website contact - ";
+
+/** site.contactUrl with a pre-filled email subject (URL-encoded, spaces as %20). */
+export const mailto = (subject?: string) =>
+  subject
+    ? `${site.contactUrl}?subject=${encodeURIComponent(SUBJECT_PREFIX + subject)}`
+    : site.contactUrl;
 
 export const nav = {
   links: [
@@ -93,9 +101,8 @@ export const packages = {
   title: "Three ways to work together.",
   lede: "Clear scope, no lock-in. Start small, scale when it proves its worth. Every engagement is scoped and priced to your situation: you'll get a clear proposal after the intro call.",
   note: "Not sure which fits? That's exactly what the intro call is for.",
-  // `bookingKey` selects which cal.com link a tier's button opens:
-  //   "intro"   → site.bookingUrl (30-min call)
-  //   "partner" → site.bookingUrlPartner (45-min call)
+  noteSubject: "Not sure which package fits",
+  // Each tier's button opens an email to site.contactUrl with its `subject`.
   tiers: [
     {
       name: "Analytics Audit",
@@ -111,7 +118,7 @@ export const packages = {
         "Walkthrough call with your team",
       ],
       cta: "Schedule your audit",
-      bookingKey: "intro",
+      subject: "Scheduling an Analytics Audit",
       featured: false,
     },
     {
@@ -128,7 +135,7 @@ export const packages = {
         "Documentation & handover session",
       ],
       cta: "Plan a sprint",
-      bookingKey: "intro",
+      subject: "Planning an Implementation Sprint",
       featured: false,
     },
     {
@@ -145,7 +152,7 @@ export const packages = {
         "No project management needed; I project manage myself"
       ],
       cta: "Let's talk",
-      bookingKey: "partner",
+      subject: "Data Partner: let's talk",
       featured: true,
       badge: "Highest value",
     },
@@ -324,6 +331,5 @@ export const contact = {
   eyebrow: "Get in touch",
   title: "Let's look at your data.",
   lede: "A free 30-minute intro call: you bring the questions, I'll bring an honest first take. No pitch deck, no obligations.",
-  primaryCta: { label: "Book a free intro call" }, // href = site.bookingUrl
-  altLabel: "Prefer email?",
+  primaryCta: { label: "Book a free intro call", subject: "Booking a free intro call" }, // href = mailto(subject)
 };

@@ -1,5 +1,5 @@
 ---
-import { contact, site } from "../data/site";
+import { contact, mailto } from "../data/site";
 ---
 
 <section
@@ -18,13 +18,9 @@ import { contact, site } from "../data/site";
     <p class="lede" data-reveal style="--reveal-delay: 0.12s">{contact.lede}</p>
 
     <div class="cta__actions" data-reveal style="--reveal-delay: 0.2s">
-      <a href={site.bookingUrl} class="btn btn--primary" target="_blank" rel="noopener" data-cta data-cta-id="book intro call">
+      <a href={mailto(contact.primaryCta.subject)} class="btn btn--primary" data-cta data-cta-id="book intro call">
         {contact.primaryCta.label}
       </a>
-      <p class="cta__alt">
-        {contact.altLabel}
-        <a class="link" href={`mailto:${site.email}`} data-cta data-cta-id="email">{site.email}</a>
-      </p>
     </div>
   </div>
 </section>
@@ -51,17 +47,6 @@ import { contact, site } from "../data/site";
     display: grid;
     justify-items: center;
     gap: 1.25rem;
-  }
-
-  .cta__alt {
-    color: var(--muted-inv);
-    font-size: 0.95rem;
-  }
-
-  .cta__alt .link {
-    color: var(--paper-inv);
-    border-bottom-color: var(--red);
-    margin-left: 0.35rem;
   }
 
   .cta__slash {

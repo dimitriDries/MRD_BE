@@ -42,7 +42,7 @@ export const authorities = {
 };
 
 /** Last-updated date shown on the legal pages (keep in step with consent policyVersion). */
-export const legalUpdated = "21 June 2026";
+export const legalUpdated = "28 October 2026";
 
 /**
  * Cookie / local-storage inventory for the Cookie Policy table.
@@ -138,12 +138,6 @@ export const processors = [
     role: "Website hosting and delivery; processes IP addresses in server logs for security and delivery.",
     location: "United States",
     safeguard: "EU-US Data Privacy Framework + Standard Contractual Clauses",
-  },
-  {
-    name: "Cal.com",
-    role: "Scheduling of intro calls when you book via a cal.com link (handled on cal.com's own pages).",
-    location: "United States",
-    safeguard: "Standard Contractual Clauses",
   },
   {
     name: "Google (Apps Script + Google Sheets)",
