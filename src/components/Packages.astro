@@ -1,5 +1,5 @@
 ---
-import { packages, site } from "../data/site";
+import { packages, mailto } from "../data/site";
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 ---
@@ -43,7 +43,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(
             ))}
           </ul>
           <a
-            href={site.contactUrl}
+            href={mailto(tier.subject)}
             class:list={["btn", tier.featured ? "btn--primary" : "btn--ghost", "tier__cta"]}
             data-cta
             data-cta-id={tier.name.toLowerCase()}
@@ -56,7 +56,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(
 
     <p class="tiers__note" data-reveal>
       {packages.note}
-      <a class="link" href={`mailto:${site.email}`} data-cta data-cta-id="email">Or just send a mail.</a>
+      <a class="link" href={mailto(packages.noteSubject)} data-cta data-cta-id="email">Or just send a mail.</a>
     </p>
   </div>
 </section>

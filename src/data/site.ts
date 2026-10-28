@@ -28,6 +28,10 @@ export const site = {
   },
 };
 
+/** site.contactUrl with a pre-filled email subject (URL-encoded, spaces as %20). */
+export const mailto = (subject?: string) =>
+  subject ? `${site.contactUrl}?subject=${encodeURIComponent(subject)}` : site.contactUrl;
+
 export const nav = {
   links: [
     { label: "Services", href: "/#services" },
@@ -92,7 +96,8 @@ export const packages = {
   title: "Three ways to work together.",
   lede: "Clear scope, no lock-in. Start small, scale when it proves its worth. Every engagement is scoped and priced to your situation: you'll get a clear proposal after the intro call.",
   note: "Not sure which fits? That's exactly what the intro call is for.",
-  // Each tier's button opens site.contactUrl (email).
+  noteSubject: "Not sure which package fits",
+  // Each tier's button opens an email to site.contactUrl with its `subject`.
   tiers: [
     {
       name: "Analytics Audit",
@@ -108,6 +113,7 @@ export const packages = {
         "Walkthrough call with your team",
       ],
       cta: "Schedule your audit",
+      subject: "Scheduling an Analytics Audit",
       featured: false,
     },
     {
@@ -124,6 +130,7 @@ export const packages = {
         "Documentation & handover session",
       ],
       cta: "Plan a sprint",
+      subject: "Planning an Implementation Sprint",
       featured: false,
     },
     {
@@ -140,6 +147,7 @@ export const packages = {
         "No project management needed; I project manage myself"
       ],
       cta: "Let's talk",
+      subject: "Data Partner: let's talk",
       featured: true,
       badge: "Highest value",
     },
@@ -318,6 +326,6 @@ export const contact = {
   eyebrow: "Get in touch",
   title: "Let's look at your data.",
   lede: "A free 30-minute intro call: you bring the questions, I'll bring an honest first take. No pitch deck, no obligations.",
-  primaryCta: { label: "Book a free intro call" }, // href = site.contactUrl
+  primaryCta: { label: "Book a free intro call", subject: "Booking a free intro call" }, // href = mailto(subject)
   altLabel: "Prefer email?",
 };
