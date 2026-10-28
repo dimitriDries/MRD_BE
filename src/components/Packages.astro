@@ -1,9 +1,6 @@
 ---
 import { packages, site } from "../data/site";
 
-// Map each tier's bookingKey to its cal.com link.
-const bookingHref = (key: string) =>
-  key === "partner" ? site.bookingUrlPartner : site.bookingUrl;
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 ---
 
@@ -46,9 +43,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(
             ))}
           </ul>
           <a
-            href={bookingHref(tier.bookingKey)}
-            target="_blank"
-            rel="noopener"
+            href={site.contactUrl}
             class:list={["btn", tier.featured ? "btn--primary" : "btn--ghost", "tier__cta"]}
             data-cta
             data-cta-id={tier.name.toLowerCase()}
